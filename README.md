@@ -1,7 +1,12 @@
 # pyhow
 Learn python by playing with sample codes and become a guru... (one day in the far \_\_future\_\_)
 
-An example of output:
+## Description
+**pyhow** is a collection of sample codes that uses and explains python core components.
+
+You will find sample code for **built-in** functions classes, exceptions, obejcts and for some modules like **itertools**, **functools** etc...
+
+### An example of output:
 ```
 >>>  ITERTOOLS LIBRARY SAMPLES.
 
@@ -31,16 +36,42 @@ COMBINATION
 
 ```
 
-##How to use it?
-###Requirements
+## How to use it?
+### Requirements
 The only requirements are **python** and **python-setuptools**.
 
-###Install
+### Install
 You can install **pyhow** on your system or virtualenv:
 ```
 python setup.py install
 ```
 
 ###Run
+Usage
 ```
+pyhow <sample-name>
 ```
+For exemple, to show the string formating samples
+```
+pyhow string_format
+```
+Help and available samples
+```
+usage: pyhow [-h]
+             {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,string_format}
+
+Select one of the following samples:
+  builtin_exceptions: built-in exceptions samples.
+  builtin_objects: built-in values and types samples.
+  lib_functools: functools library samples.
+  lib_itertools: itertools library samples.
+  string_format: string formating language samples.
+
+positional arguments:
+  {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,string_format}
+
+optional arguments:
+  -h, --help            show this help message and exit
+```
+
+Have fun!
