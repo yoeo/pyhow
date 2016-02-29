@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 setup(
     name="pyhow",
     author="yoeo",
-    version="0.1",
+    version="1.0",
     url="https://github.com/yoeo",
     license="MIT",
     description="Master all the bases of python!",
