@@ -294,13 +294,11 @@ def oct_builtin():
 
 def open_builtin():
     """ open: Open a file. """
-    filename = tempfile.mktemp()
-    with open(filename, 'w+') as data_file:
-        data_file.write("read/write")
+    with tempfile.TemporaryFile() as data_file:
+        data_file.write(b"read/write")
         data_file.seek(0)
         data = data_file.readline()
-    os.remove(filename)
-    return data
+        return data.decode()
 
 
 def pow_builtin():

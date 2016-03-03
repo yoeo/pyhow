@@ -465,13 +465,11 @@ def environment_error():
 
 def file_exists_error():
     """ File already exists. """
-    dirname = tempfile.mkdtemp()
-    try:
-        os.mkdir(dirname)
-    except FileExistsError:
-        return "creating a directory that already exists"
-    finally:
-        os.rmdir(dirname)
+    with tempfile.TemporaryDirectory() as dirname:
+        try:
+            os.mkdir(dirname)
+        except FileExistsError:
+            return "creating a directory that already exists"
 
 
 def file_not_found_error():
@@ -492,13 +490,11 @@ def io_error():
 
 def is_a_directory_error():
     """ Wrong usage of a directory. """
-    dirname = tempfile.mkdtemp()
-    try:
-        open(dirname, 'r')
-    except IsADirectoryError:
-        return "reading a directory as a file"
-    finally:
-        os.rmdir(dirname)
+    with tempfile.TemporaryDirectory() as dirname:
+        try:
+            open(dirname, 'r')
+        except IsADirectoryError:
+            return "reading a directory as a file"
 
 
 def not_a_directory_error():

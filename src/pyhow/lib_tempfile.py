@@ -84,10 +84,9 @@ def mkdtemp():
 def temporary_directory():
     """ Unique temporary directory info. Delete on close. """
 
-    dir_data = tempfile.TemporaryDirectory(prefix='how_', suffix='_tmp')
-    created = os.path.exists(dir_data.name)
-
-    return created and "directory {}".format(dir_data.name)
+    with tempfile.TemporaryDirectory(prefix='how_', suffix='_tmp') as dirname:
+        created = os.path.exists(dirname)
+        return created and "directory {}".format(dirname)
 
 
 def tempdir():
