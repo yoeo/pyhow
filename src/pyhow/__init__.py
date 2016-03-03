@@ -13,6 +13,7 @@ import pyhow.builtin_exceptions
 import pyhow.builtin_objects
 import pyhow.lib_functools
 import pyhow.lib_itertools
+import pyhow.lib_tempfile
 import pyhow.string_format
 
 
