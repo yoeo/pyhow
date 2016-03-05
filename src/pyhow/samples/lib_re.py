@@ -1,4 +1,4 @@
-""" tempfile library samples. """
+""" re library samples. """
 
 import re
 
