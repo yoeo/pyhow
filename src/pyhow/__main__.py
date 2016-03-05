@@ -12,8 +12,10 @@ def run():
     """ Parse command line and show the required sample. """
 
     samples = make_samples()
+    space = max(len(name) for name in samples)
+
     description = DESCRIPTION_PREFIX + ''.join([
-        "\n  {}: {}".format(name, module.__doc__.strip().lower())
+        "\n  {:<{}}: {}".format(name, space, module.__doc__.strip().lower())
         for name, module in sorted(samples.items(), key=lambda item: item[0])
     ])
 
