@@ -13,6 +13,7 @@ import pyhow.builtin_exceptions
 import pyhow.builtin_objects
 import pyhow.lib_functools
 import pyhow.lib_itertools
+import pyhow.lib_re
 import pyhow.lib_tempfile
 import pyhow.string_format
 
@@ -65,7 +66,7 @@ def _underline(text):
 def show_sample(module):
     """ Print sample modules. """
 
-    categories = [('unknown', -1)]
+    categories = [('uncategorized', -1)]
     categories += [
         (line.strip().replace(_CATEGORY_TAG, ''), line_number)
         for line_number, line in enumerate(inspect.getsourcelines(module)[0])
