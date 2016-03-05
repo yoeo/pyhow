@@ -9,13 +9,13 @@ import itertools
 import pydoc
 import sys
 
-import pyhow.builtin_exceptions
-import pyhow.builtin_objects
-import pyhow.lib_functools
-import pyhow.lib_itertools
-import pyhow.lib_re
-import pyhow.lib_tempfile
-import pyhow.string_format
+#import pyhow.builtin_exceptions
+#import pyhow.builtin_objects
+#import pyhow.lib_functools
+#import pyhow.lib_itertools
+import pyhow.samples.lib_re
+#import pyhow.lib_tempfile
+#import pyhow.string_format
 
 
 _CATEGORY_TAG = "# category: "
@@ -49,7 +49,7 @@ def make_samples():
 
     return {
         name.split('.')[-1]: module for name, module in sys.modules.items() if (
-            name.startswith('pyhow.') and not name.startswith('pyhow._'))
+            name.startswith('pyhow.samples.'))
     }
 
 
