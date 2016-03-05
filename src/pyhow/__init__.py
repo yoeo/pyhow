@@ -9,13 +9,13 @@ import itertools
 import pydoc
 import sys
 
-#import pyhow.builtin_exceptions
-#import pyhow.builtin_objects
-#import pyhow.lib_functools
-#import pyhow.lib_itertools
+import pyhow.samples.builtin_exceptions
+import pyhow.samples.builtin_objects
+import pyhow.samples.lib_functools
+import pyhow.samples.lib_itertools
 import pyhow.samples.lib_re
-#import pyhow.lib_tempfile
-#import pyhow.string_format
+import pyhow.samples.lib_tempfile
+import pyhow.samples.string_format
 
 
 _CATEGORY_TAG = "# category: "
