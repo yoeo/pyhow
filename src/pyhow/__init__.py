@@ -15,6 +15,7 @@ import pyhow.samples.lib_functools
 import pyhow.samples.lib_itertools
 import pyhow.samples.lib_re
 import pyhow.samples.lib_tempfile
+import pyhow.samples.regular_expressions
 import pyhow.samples.string_format
 
 
