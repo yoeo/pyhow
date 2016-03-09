@@ -58,17 +58,20 @@ pyhow string_format
 Help and available samples
 ```
 usage: pyhow [-h]
-             {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,string_format}
+             {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,lib_re,lib_tempfile,regular_expressions,string_format}
 
 Select one of the following samples:
-  builtin_exceptions: built-in exceptions samples.
-  builtin_objects: built-in values and types samples.
-  lib_functools: functools library samples.
-  lib_itertools: itertools library samples.
-  string_format: string formating language samples.
+  builtin_exceptions : built-in exceptions samples.
+  builtin_objects    : built-in values and types samples.
+  lib_functools      : functools library samples.
+  lib_itertools      : itertools library samples.
+  lib_re             : re library samples.
+  lib_tempfile       : tempfile library samples.
+  regular_expressions: regular expressions language samples.
+  string_format      : string formating language samples.
 
 positional arguments:
-  {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,string_format}
+  {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,lib_re,lib_tempfile,regular_expressions,string_format}
 
 optional arguments:
   -h, --help            show this help message and exit
