@@ -21,7 +21,7 @@ def mkstemp():
 
     os.close(fileno)
     os.remove(filename)
-    return created and "fileno {}".format(filename)
+    return created and "filename {}".format(filename)
 
 
 def named_temporary_file():
@@ -29,7 +29,7 @@ def named_temporary_file():
 
     with tempfile.NamedTemporaryFile(prefix='how_', suffix='.bin') as temp_file:
         created = os.path.exists(temp_file.name)
-        return created and "file {}".format(temp_file.name)
+        return created and "filename {}".format(temp_file.name)
 
 
 def spooled_temporary_file():
