@@ -11,6 +11,7 @@ import sys
 
 import pyhow.samples.builtin_exceptions
 import pyhow.samples.builtin_objects
+import pyhow.samples.lib_collections
 import pyhow.samples.lib_functools
 import pyhow.samples.lib_itertools
 import pyhow.samples.lib_re
