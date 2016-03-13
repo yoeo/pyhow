@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python -m pyhow $*
+python3 -m pyhow $*
 
