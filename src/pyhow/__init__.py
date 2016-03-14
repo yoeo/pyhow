@@ -18,6 +18,7 @@ import pyhow.samples.lib_re
 import pyhow.samples.lib_tempfile
 import pyhow.samples.regular_expressions
 import pyhow.samples.string_format
+import pyhow.samples.special_methods
 
 
 _CATEGORY_TAG = "# category: "
