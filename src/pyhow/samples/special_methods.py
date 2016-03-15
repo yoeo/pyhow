@@ -1,5 +1,8 @@
 """ all about special methods / magic methods / double underscored methods. """
 
+# using exemple classes that do not have public methods
+# pylint: disable=too-few-public-methods
+
 
 # category: iterators and iterables
 
@@ -7,7 +10,7 @@
 def next_method():
     """ next, for: Get one item of an iterators. """
 
-    class Iterator:
+    class _Iterator:
         def __init__(self):
             self._stop = False
         def __next__(self):
@@ -16,49 +19,49 @@ def next_method():
             self._stop = True
             return "drums"
 
-    return next(Iterator())
+    return next(_Iterator())
 
 
 def iter_method():
     """ iter, for: Create an iterator for an iterable. """
 
-    class Iterable:
+    class _Iterable:
         def __iter__(self):
             return iter(["guitare"])
 
-    return next(iter(Iterable()))
+    return next(iter(_Iterable()))
 
 
 def len_method():
     """ len: Get the number of items. """
 
-    class Iterable:
+    class _Iterable:
         def __len__(self):
             return 1337
 
-    return len(Iterable())
+    return len(_Iterable())
 
 
 def contains_method():
     """ in: Check if an item is in an iterable. """
 
-    class Iterable:
+    class _Iterable:
         def __contains__(self, item):
             return item == "trap"
 
-    return "trap" in Iterable() and "trap music"
+    return "trap" in _Iterable() and "trap music"
 
 
 def reversed_method():
     """ reversed: Reverse a iterable. """
 
-    class Iterable:
+    class _Iterable:
         def __init__(self):
             self._sequence = ["Soca", "Zumba"]
         def __reversed__(self):
             return self._sequence[::-1]
 
-    return reversed(Iterable())[0]
+    return next(iter(reversed(_Iterable())))
 
 
 # category: indexable and maps
@@ -67,17 +70,17 @@ def reversed_method():
 def index():
     """ [...]: Use an item as a sequence index. """
 
-    class Index:
+    class _Index:
         def __index__(self):
             return -1
 
-    return ["violin", "contrabass"][Index()]
+    return ["violin", "contrabass"][_Index()]
 
 
 def delitem():
     """ del: Delete an item from a sequence. """
 
-    class Indexable:
+    class _Indexable:
         def __init__(self):
             self._deleted = []
         def __delitem__(self, key):
@@ -87,7 +90,7 @@ def delitem():
                 raise KeyError()
             return True
 
-    orchestra = Indexable()
+    orchestra = _Indexable()
     del orchestra['dancer']
     try:
         return orchestra['dancer']
@@ -98,41 +101,40 @@ def delitem():
 def getitem():
     """ [...]: Get an item from a sequence. """
 
-    class Indexable:
+    class _Indexable:
         def __getitem__(self, key):
             if key not in ['piano', 'organ']:
                 raise KeyError()
             return "play {}".format(key)
 
-    return Indexable()['piano']
+    return _Indexable()['piano']
 
 
 def missing():
     """ [...]: Get a default item when the required item is not in dict. """
 
-    class Indexable(dict):
+    class _Indexable(dict):
         def __missing__(self, key):
             return "silence..."
 
-    return Indexable()[0]
+    return _Indexable()[0]
 
 
 def setitem():
     """ [...] =: Set a sequence item value. """
 
-    class Indexable:
+    class _Indexable:
         def __init__(self):
             self._sequence = []
         def __getitem__(self, key):
             try:
-                index = self._sequence.index(key)
+                return self._sequence[self._sequence.index(key)+1]
             except ValueError:
                 raise KeyError()
-            return self._sequence[index+1]
         def __setitem__(self, key, value):
             self._sequence += [key, value]
 
-    singer = Indexable()
+    singer = _Indexable()
     singer['type'] = "slam"
     return singer['type']
 
@@ -140,65 +142,65 @@ def setitem():
 # category: comparision operator
 
 
-def eq():
+def eq_comparison():
     """ ==: Equal operator. """
 
-    class Comparable:
+    class _Comparable:
         def __eq__(self, other):
             return other.startswith('b')
 
-    return Comparable() == 'ballade' and "romantic melody "
+    return _Comparable() == 'ballade' and "romantic melody "
 
 
-def ge():
+def ge_comparison():
     """ >=: Greater or equal operator. """
 
-    class Comparable:
+    class _Comparable:
         def __ge__(self, other):
             return len(other) > 2 and other[2] == 'c'
 
-    return Comparable() >= 'vocals' and "opera"
+    return _Comparable() >= 'vocals' and "opera"
 
 
-def gt():
+def gt_comparison():
     """ >: Greater than operator. """
 
-    class Comparable:
+    class _Comparable:
         def __gt__(self, other):
             return 'big' in other
 
-    return Comparable() > 'big' and "masperpiece"
+    return _Comparable() > 'big' and "masperpiece"
 
 
-def le():
+def le_comparison():
     """ <=: Less than or equal operator. """
 
-    class Comparable:
+    class _Comparable:
         def __le__(self, other):
             return bool(other)
 
-    return Comparable() <= 'average' and "radio station music"
+    return _Comparable() <= 'average' and "radio station music"
 
 
-def lt():
+def lt_comparison():
     """ <: Less than operator. """
 
 
-    class Comparable:
+    class _Comparable:
         def __lt__(self, other):
             return other.endswith('d')
 
-    return Comparable() < 'bad' and "elevator music"
+    return _Comparable() < 'bad' and "elevator music"
 
 
-def ne():
+def ne_comparison():
     """ !=: Not equal operator. """
 
-    class Comparable:
+    class _Comparable:
         def __ne__(self, other):
             return 'epic' not in other
 
-    return Comparable() != 'flat' and "epic song"
+    return _Comparable() != 'flat' and "epic song"
 
 
 # category: object attributes
@@ -253,19 +255,19 @@ def set_method():
 def bases_attribute():
     """ cls.__bases__: Base classes of the current class. """
 
-    class SubClass(str):
+    class _SubClass(str):
         """ str sub-class. """
 
-    return "{}ing instruments".format(SubClass.__bases__[0].__name__)
+    return "{}ing instruments".format(_SubClass.__bases__[0].__name__)
 
 
 def class_attribute():
     """ obj.__class__, type: Class of a given instance. """
 
-    class BeatBox:
+    class _BeatBox:
         """ BeatBox class. """
 
-    return BeatBox().__class__.__name__
+    return _BeatBox().__class__.__name__
 
 
 def del_method():
@@ -273,12 +275,12 @@ def del_method():
 
     context = ""
 
-    class Destroyable:
+    class _Destroyable:
         def __del__(self):
             nonlocal context
             context = "burn the lyrics"
 
-    item = Destroyable()
+    item = _Destroyable()
     del item
     return context
 
@@ -286,11 +288,12 @@ def del_method():
 def dict_attribute():
     """ cls.__dict__: Bindings for class members. """
 
-    class ItemClass:
+    class _ItemClass:
         def get_message(self):
-            return "podcasts are good for health"
+            """ Give a positive message. """
+            return "podcasts are good for self({})".format(id(self))
 
-    item = ItemClass()
+    item = _ItemClass()
     return type(item).__dict__['get_message'](item)
 
 
@@ -379,61 +382,61 @@ def self__attribute():
 def bool_convert():
     """ bool: Convert an item to a boolean. """
 
-    class BooleanLike:
+    class _BooleanLike:
         def __bool__(self):
             return True
-    
-    return bool(BooleanLike()) and "good vibes"
+
+    return bool(_BooleanLike()) and "good vibes"
 
 
 def bytes_convert():
     """ bytes: Convert an item to bytes string. """
 
-    class ByteLike:
+    class _ByteLike:
         def __bytes__(self):
             return b"beat maker"
-    
-    return bytes(ByteLike()).decode()
+
+    return bytes(_ByteLike()).decode()
 
 
 def complex_convert():
     """ complex: Convert an item to a complex number. """
 
-    class ComplexLike:
+    class _ComplexLike:
         def __complex__(self):
             return -1j
-    
-    return complex(ComplexLike())
+
+    return complex(_ComplexLike())
 
 
 def float_convert():
     """ float: Convert an item to a floating point decimal. """
 
-    class FloatLike:
+    class _FloatLike:
         def __float__(self):
             return float('nan')
-    
-    return float(FloatLike())
+
+    return float(_FloatLike())
 
 
 def int_convert():
     """ int: Convert an item to an integer. """
 
-    class IntLike:
+    class _IntLike:
         def __int__(self):
             return 666
-    
-    return int(IntLike())
+
+    return int(_IntLike())
 
 
 def str_convert():
     """ str: Convert an item to a string. """
 
-    class StringLike:
+    class _StringLike:
         def __str__(self):
             return "vocoder"
-    
-    return str(StringLike())
+
+    return str(_StringLike())
 
 
 # category: value manipulation
@@ -442,41 +445,41 @@ def str_convert():
 def abs_method():
     """ abs: Absolute value of an item. """
 
-    class Absolute:
+    class _Absolute:
         def __abs__(self):
             return 13831
 
-    return abs(Absolute())
+    return abs(_Absolute())
 
 
 def format_method():
     """ format: Formated representation of an item. """
 
-    class Formatable:
+    class _Formatable:
         def __format__(self, spec):
             return spec.format('djembe')
 
-    return format(Formatable(), "hit my {}")
+    return format(_Formatable(), "hit my {}")
 
 
 def repr_method():
     """ repr: Basic representation of an item. """
 
-    class Representable:
+    class _Representable:
         def __repr__(self):
             return "<? deep soul ?>"
 
-    return repr(Representable())
+    return repr(_Representable())
 
 
 def round_method():
     """ round: Round an item to the closest integer. """
 
-    class Round:
+    class _Round:
         def __round__(self, precision=0):
             return 10**(-precision)
 
-    return round(Round(), 3)
+    return round(_Round(), 3)
 
 
 def floor_metod():
@@ -494,11 +497,11 @@ def trunc_method():
 def hash_method():
     """ hash: An integer represetation of a value of an object. """
 
-    class Hashable:
+    class _Hashable:
         def __hash__(self):
             return 10001
 
-    return hash(Hashable())
+    return hash(_Hashable())
 
 
 # category: serialization
@@ -538,13 +541,13 @@ def setstate():
 def enter_exit():
     """ with: Use and release a resource."""
 
-    class Resource:
+    class _Resource:
         def __enter__(self):
             return "enter concert"
         def __exit__(self, error_class, error, traceback):
             pass
 
-    with Resource() as resource:
+    with _Resource() as resource:
         return resource
 
 
