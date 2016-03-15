@@ -154,10 +154,10 @@ def ge():
     """ >=: Greater or equal operator. """
 
     class Comparable:
-        def __eq__(self, other):
+        def __ge__(self, other):
             return len(other) > 2 and other[2] == 'c'
 
-    return Comparable() == 'vocals' and "opera"
+    return Comparable() >= 'vocals' and "opera"
 
 
 def gt():
@@ -201,74 +201,176 @@ def ne():
     return Comparable() != 'flat' and "epic song"
 
 
+# category: object attributes
+
+
+def delattr_method():
+    """ __delattr__: Todo. """
+
+
+def getattr_method():
+    """ __getattr__: Todo. """
+
+
+def getattribute_method():
+    """ __getattribute__: Todo. """
+
+
+def instancecheck_method():
+    """ __instancecheck__: Todo. """
+
+
+def setattr_method():
+    """ __setattr__: Todo. """
+
+
+def subclasscheck_method():
+    """ __subclasscheck__: Todo. """
+
+
+def subclasshook():
+    """ __subclasshook__: Todo. """
+
+
+# category: object descriptors
+
+
+def delete_method():
+    """ __delete__: Todo. """
+
+
+def get_method():
+    """ __get__: Todo. """
+
+
+def set_method():
+    """ __set__: Todo. """
+
+
 # category: object model
 
 
-def bases():
-    """ """
+def bases_attribute():
+    """ cls.__bases__: Base classes of the current class. """
+
+    class SubClass(str):
+        """ str sub-class. """
+
+    return "{}ing instruments".format(SubClass.__bases__[0].__name__)
 
 
 def class_attribute():
-    """ """
+    """ obj.__class__, type: Class of a given instance. """
+
+    class BeatBox:
+        """ BeatBox class. """
+
+    return BeatBox().__class__.__name__
 
 
 def del_method():
-    """ """
+    """ del: Cleanup an item on destroy. """
 
+    context = ""
 
-def delete():
-    """ """
+    class Destroyable:
+        def __del__(self):
+            nonlocal context
+            context = "burn the lyrics"
 
-
-def del_method():
-    """ """
+    item = Destroyable()
+    del item
+    return context
 
 
 def dict_attribute():
-    """ """
+    """ cls.__dict__: Bindings for class members. """
+
+    class ItemClass:
+        def get_message(self):
+            return "podcasts are good for health"
+
+    item = ItemClass()
+    return type(item).__dict__['get_message'](item)
 
 
 def dir_method():
-    """ """
+    """ __dir__: Todo. """
 
 
-def id_method():
-    """ """
+def init_method():
+    """ __init__: Todo. """
 
 
-def init():
-    """ """
+def metaclass_attribute():
+    """ __metaclass__: Todo. """
 
 
-def metaclass():
-    """ """
-
-
-def mro():
-    """ """
+def mro_attribute():
+    """ __mro__: Todo. """
 
 
 def new():
-    """ """
+    """ __new__: Todo. """
 
 
 def prepare():
-    """ """
+    """ __prepare__: Todo. """
 
 
 def slots():
-    """ """
+    """ __slots__: Todo. """
 
 
 def weakref():
-    """ """
+    """ __weakref__: Todo. """
 
 
 # category: functions
 
 
-def _():
-    """ """
+def annotations():
+    """ __annotations__: Todo. """
+
+
+def call():
+    """ __call__: Todo. """
+
+
+def closure():
+    """ __closure__: Todo. """
+
+
+def code():
+    """ __code__: Todo. """
+
+
+def defaults():
+    """ __defaults__: Todo. """
+
+
+def doc():
+    """ __doc__: Todo. """
+
+
+def kwdefaults():
+    """ __kwdefaults__: Todo. """
+
+
+def objclass():
+    """ __objclass__: Todo. """
+
+
+def qualname():
+    """ __qualname__: Todo. """
+
+
+def func():
+    """ __func__: Todo. """
+
+
+def self__attribute():
+    """ __self__: Todo. """
 
 
 # category: conversions
@@ -377,6 +479,18 @@ def round_method():
     return round(Round(), 3)
 
 
+def floor_metod():
+    """ __floor__: Todo. """
+
+
+def ceil_method():
+    """ __ceil__: Todo. """
+
+
+def trunc_method():
+    """ __trunc__: Todo. """
+
+
 def hash_method():
     """ hash: An integer represetation of a value of an object. """
 
@@ -387,131 +501,257 @@ def hash_method():
     return hash(Hashable())
 
 
-# category: dictionaries and hash-maps
-
-
-def _():
-    """ """
-
-
-# category: numbers
-
-
-def _():
-    """ """
-
-
-# category: order and comparision
-
-
-def _():
-    """ """
-
-
 # category: serialization
 
 
-def _():
-    """ """
+def copy():
+    """ __copy__: Todo. """
+
+
+def deepcopy():
+    """ __deepcopy__: Todo. """
+
+
+def getstate():
+    """ __getstate__: Todo. """
+
+
+def reduce():
+    """ __reduce__: Todo. """
+
+
+def reduce_ex():
+    """ __reduce_ex__: Todo. """
+
+
+def getnewargs():
+    """ __getnewargs__: Todo. """
+
+
+def setstate():
+    """ __setstate__: Todo. """
 
 
 # category: resource management
 
 
-def _():
-    """ """
+def enter_exit():
+    """ with: Use and release a resource."""
 
-"""
+    class Resource:
+        def __enter__(self):
+            return "enter concert"
+        def __exit__(self, error_class, error, traceback):
+            pass
 
-# async
-__aenter__
-__aexit__
-__aiter__
-__anext__
-__await__
+    with Resource() as resource:
+        return resource
 
-# func
-__annotations__
-__call__
-__closure__
-__code__
-__defaults__
-__doc__
-__kwdefaults__
-__objclass__
-__qualname__
 
-# class attr
-__delattr__
-__get__
-__getattr__
-__getattribute__
-__instancecheck__
-__set__
-__setattr__
-__subclasscheck__
+# category: asynchronious operations
 
-# operators
-__add__
-__and__
-__divmod__
-__floordiv__
-__lshift__
-__invert__
-__mod__
-__matmul__
-__mul__
-__neg__
-__or__
-__pos__
-__pow__
-__rshift__
-__sub__
-__truediv__
-__xor__
 
-# inplace operators
-__iadd__
-__iand__
-__ifloordiv__
-__ilshift__
-__imatmul__
-__imod__
-__imul__
-__ior__
-__ipow__
-__irshift__
-__isub__
-__itruediv__
-__ixor__
+def aenter():
+    """ __aenter__: Todo. """
 
-# right opperand operator
-__radd__
-__rand__
-__rdivmod__
-__rfloordiv__
-__rlshift__
-__rmatmul__
-__rmod__
-__rmul__
-__ror__
-__rpow__
-__rrshift__
-__rsub__
-__rtruediv__
-__rxor__
 
-# resource
-__enter__
-__exit__
+def aexit():
+    """ __aexit__: Todo. """
 
-# builtin ??
-__file__
-__func__
-__globals__
-__import__
-__module__
-__name__
-__self__
-"""
+
+def aiter():
+    """ __aiter__: Todo. """
+
+
+def anext():
+    """ __anext__: Todo. """
+
+
+def await():
+    """ __await__: Todo. """
+
+
+# category: numerical operators
+
+
+def add_operator():
+    """ __add__: Todo. """
+
+
+def and_operator():
+    """ __and__: Todo. """
+
+
+def divmod_operator():
+    """ __divmod__: Todo. """
+
+
+def floordiv_operator():
+    """ __floordiv__: Todo. """
+
+
+def lshift_operator():
+    """ __lshift__: Todo. """
+
+
+def invert_operator():
+    """ __invert__: Todo. """
+
+
+def mod_operator():
+    """ __mod__: Todo. """
+
+
+def matmul_operator():
+    """ __matmul__: Todo. """
+
+
+def mul_operator():
+    """ __mul__: Todo. """
+
+
+def neg_operator():
+    """ __neg__: Todo. """
+
+
+def or_operator():
+    """ __or__: Todo. """
+
+
+def pos_operator():
+    """ __pos__: Todo. """
+
+
+def pow_operator():
+    """ __pow__: Todo. """
+
+
+def rshift_operator():
+    """ __rshift__: Todo. """
+
+
+def sub_operator():
+    """ __sub__: Todo. """
+
+
+def truediv_operator():
+    """ __truediv__: Todo. """
+
+
+def xor_operator():
+    """ __xor__: Todo. """
+
+
+# category: numerical operators, inplace changes
+
+
+def iadd():
+    """ __iadd__: Todo. """
+
+
+def iand():
+    """ __iand__: Todo. """
+
+
+def ifloordiv():
+    """ __ifloordiv__: Todo. """
+
+
+def ilshift():
+    """ __ilshift__: Todo. """
+
+
+def imatmul():
+    """ __imatmul__: Todo. """
+
+
+def imod():
+    """ __imod__: Todo. """
+
+
+def imul():
+    """ __imul__: Todo. """
+
+
+def ior():
+    """ __ior__: Todo. """
+
+
+def ipow():
+    """ __ipow__: Todo. """
+
+
+def irshift():
+    """ __irshift__: Todo. """
+
+
+def isub():
+    """ __isub__: Todo. """
+
+
+def itruediv():
+    """ __itruediv__: Todo. """
+
+
+def ixor():
+    """ __ixor__: Todo. """
+
+
+# category: numerical operators, right operand implementation
+
+
+def radd():
+    """ __radd__: Todo. """
+
+
+def rand():
+    """ __rand__: Todo. """
+
+
+def rdivmod():
+    """ __rdivmod__: Todo. """
+
+
+def rfloordiv():
+    """ __rfloordiv__: Todo. """
+
+
+def rlshift():
+    """ __rlshift__: Todo. """
+
+
+def rmatmul():
+    """ __rmatmul__: Todo. """
+
+
+def rmod():
+    """ __rmod__: Todo. """
+
+
+def rmul():
+    """ __rmul__: Todo. """
+
+
+def ror():
+    """ __ror__: Todo. """
+
+
+def rpow():
+    """ __rpow__: Todo. """
+
+
+def rrshift():
+    """ __rrshift__: Todo. """
+
+
+def rsub():
+    """ __rsub__: Todo. """
+
+
+def rtruediv():
+    """ __rtruediv__: Todo. """
+
+
+def rxor():
+    """ __rxor__: Todo. """
 
