@@ -3,6 +3,9 @@
 # using exemple classes that do not have public methods
 # pylint: disable=too-few-public-methods
 
+import math
+import weakref
+
 
 # category: iterators and iterables
 
@@ -207,31 +210,119 @@ def ne_comparison():
 
 
 def delattr_method():
-    """ __delattr__: Todo. """
+    """ del, delattr: Remove an attribute. """
+
+    class _ItemClass:
+        def __init__(self):
+            self._deleted = set()
+        def __getattr__(self, attribute):
+            if attribute in self._deleted:
+                raise AttributeError()
+            return 321
+        def __delattr__(self, attribute):
+            self._deleted.add(attribute)
+
+    item = _ItemClass()
+    delattr(item, 'value')
+    try:
+        _ = item.value
+    except AttributeError:
+        return "drop da bass"
+
+
+def dir_method():
+    """ dir: List of accessible attributes and methods. """
+
+    class _ItemClass:
+        def __dir__(self):
+            return ['ghost_attribute'] + list(self.__dict__.keys())
+        def __getattr__(self, attribute):
+            if attribute != 'ghost_attribute':
+                raise AttributeError()
+            return "Fantom Flutist"
+
+    item = _ItemClass()
+    return 'ghost_attribute' in dir(item) and item.ghost_attribute
 
 
 def getattr_method():
-    """ __getattr__: Todo. """
+    """ obj.attr, getattr: Produce a value for missing attributes. """
+
+    class _ItemClass:
+        def __init__(self):
+            self.value_found = True
+        def __getattr__(self, attribute):
+            return "sweet stream"
+
+    item = _ItemClass()
+    return item.value_found and item.value_missing
 
 
 def getattribute_method():
-    """ __getattribute__: Todo. """
+    """ obj.attr, getattr: Produce a value for all attributes. """
 
+    class _ItemClass:
+        def __init__(self):
+            self.value_found = True
+        def __getattribute__(self, attribute):
+            return Ellipsis
 
-def instancecheck_method():
-    """ __instancecheck__: Todo. """
+    item = _ItemClass()
+    return item.value_found == item.value_missing == ... and "Make some Noise"
 
 
 def setattr_method():
-    """ __setattr__: Todo. """
+    """ obj.attr=, setattr: Change value of all attributes. """
+
+    class _ItemClass:
+        value = ...
+        def __init__(self):
+            self.value = "spit some more rap"
+        def __setattr__(self, attribute, value):
+            _ItemClass.value = value
+
+    return _ItemClass() and _ItemClass.value
+
+
+# category: object class hierarchy
+
+
+def instancecheck_method():
+    """ isinstance: Check if item is an instance of a class. """
+
+    class _MetaBase(type):
+        def __instancecheck__(self, item):
+            return 'x' in item
+
+    class _Base(metaclass=_MetaBase):
+        pass
+
+    item = "saxophone"
+    return isinstance(item, _Base) and item
+
+
+def prepare():
+    """ __prepare__: Todo. """
 
 
 def subclasscheck_method():
-    """ __subclasscheck__: Todo. """
+    """ issubclass: Check if a class is a subclass of an other one. """
+
+    class _MetaBase(type):
+        def __subclasscheck__(self, cls):
+            return 's' in cls.__name__
+
+    class _Base(metaclass=_MetaBase):
+        pass
+
+    item = "xylophone"
+    return issubclass(type(item), _Base) and item
 
 
 def subclasshook():
     """ __subclasshook__: Todo. """
+
+
 
 
 # category: object descriptors
@@ -247,6 +338,10 @@ def get_method():
 
 def set_method():
     """ __set__: Todo. """
+
+
+def mro_attribute():
+    """ __mro__: Todo. """
 
 
 # category: object model
@@ -297,36 +392,51 @@ def dict_attribute():
     return type(item).__dict__['get_message'](item)
 
 
-def dir_method():
-    """ __dir__: Todo. """
-
-
 def init_method():
-    """ __init__: Todo. """
+    """ Cls(): Initialize a new object. """
 
+    class _ItemClass:
+        def __init__(self, value):
+            self.value = value
 
-def metaclass_attribute():
-    """ __metaclass__: Todo. """
-
-
-def mro_attribute():
-    """ __mro__: Todo. """
+    return _ItemClass("silento").value
 
 
 def new():
-    """ __new__: Todo. """
+    """ Cls(): Create an object. """
 
+    class _ItemClass:
+        def __new__(cls):
+            item = object.__new__(cls)
+            item.value = "trumpet"
+            return item
 
-def prepare():
-    """ __prepare__: Todo. """
+    return _ItemClass().value
 
 
 def slots():
-    """ __slots__: Todo. """
+    """ obj.attr=: Fix the available attributes. """
+
+    class _ItemClass:
+        __slots__ = ('value_found',)
+
+    item = _ItemClass()
+    item.value_found = "harmonica"
+    try:
+        item.value_missing = ...
+    except AttributeError:
+        return item.value_found
 
 
-def weakref():
-    """ __weakref__: Todo. """
+def weakref_attribute():
+    """ weakref.ref(obj): Weak references to an item. """
+
+    class _ItemClass:
+        pass
+
+    item = _ItemClass()
+    ref_item = weakref.ref(item)
+    return ref_item is item.__weakref__ and "tap dance"
 
 
 # category: functions
