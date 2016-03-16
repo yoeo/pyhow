@@ -1,5 +1,13 @@
 """ Built-in values and types samples. """
 
+# ignore some coding flaws
+# pylint: disable=bad-builtin
+# pylint: disable=eval-used
+# pylint: disable=exec-used
+# pylint: disable=too-few-public-methods
+# pylint: disable=undefined-variable
+# pylint: disable=unused-variable
+
 import io
 import os
 import sys
@@ -171,7 +179,7 @@ def len_builtin():
 
 
 def map_builtin():
-    """ map: Apply a method to itarable items. Prefer list comprehension. """ 
+    """ map: Apply a method to iterable items. Prefer list comprehension. """
     return ''.join(map(lambda value: chr(ord(value)-1), "tfdsfu\x21dpef"))
 
 
@@ -442,7 +450,7 @@ def super_builtin():
         """ A meal. """
         def cook(self):
             """ Cook a meal. """
-            return "cooked"
+            return "cooked {}".format(id(self))
 
     class Ramen(Meal):
         """ Some ramen. """
