@@ -402,7 +402,7 @@ def init_method():
     return _ItemClass("silento").value
 
 
-def new():
+def new_method():
     """ Cls(): Create an object. """
 
     class _ItemClass:
@@ -414,8 +414,8 @@ def new():
     return _ItemClass().value
 
 
-def slots():
-    """ obj.attr=: Fix the available attributes. """
+def slots_attribute():
+    """ obj.__slots__: Freaze the available attributes list. """
 
     class _ItemClass:
         __slots__ = ('value_found',)
@@ -429,7 +429,7 @@ def slots():
 
 
 def weakref_attribute():
-    """ weakref.ref(obj): Weak references to an item. """
+    """ obj.__weakref__, weakref.ref(obj): Weak references to an item. """
 
     class _ItemClass:
         pass
@@ -443,47 +443,119 @@ def weakref_attribute():
 
 
 def annotations():
-    """ __annotations__: Todo. """
+    """ func.__annotations__: Annotations for function parameters. """
+
+    def _function(value:int) -> float:
+        return float(value)
+
+    return (
+        _function.__annotations__['value'] is int and
+        _function.__annotations__['return'] is float and "phone ringtone")
 
 
 def call():
-    """ __call__: Todo. """
+    """ func(): "Call" an item as a function. """
+
+    class _FunctionLike:
+        def __call__(self, value):
+            return "{} beepping".format(value)
+
+    return _FunctionLike()('pager')
 
 
 def closure():
-    """ __closure__: Todo. """
+    """ func.__closure__: Variables trapped inside a function. """
+
+    def _wrapper():
+        encapsulated = "dial tone"
+        def _wrapped():
+            nonlocal encapsulated
+        return _wrapped
+
+    function = _wrapper()
+    return function.__closure__[0].cell_contents
 
 
 def code():
-    """ __code__: Todo. """
+    """ eval, exec: Access the bytecode of a function. """
+
+    def _function():
+        return "vibrating device"
+
+    return eval(_function.__code__)
 
 
 def defaults():
-    """ __defaults__: Todo. """
+    """ func.__defaults__: Default values of function parameters. """
+
+    def _function(value="notification sound"):
+        pass
+
+    return _function.__defaults__[0]
 
 
 def doc():
-    """ __doc__: Todo. """
+    """ func.__doc__, help(func): Docstring of a function. """
+
+    def _function():
+        " MIDI sheet music "
+
+    return _function.__doc__.strip()
 
 
 def kwdefaults():
-    """ __kwdefaults__: Todo. """
+    """ func.__kwdefaults__: Default values of keyword only parameters. """
+
+    def _function(*_, value="phone alarm"):
+        pass
+
+    return _function.__kwdefaults__['value']
 
 
-def objclass():
-    """ __objclass__: Todo. """
+def name():
+    """ f.__name__: The short name of the function. """
+
+    class _New:
+        class _Message:
+            @staticmethod
+            def _mutted():
+                pass
+
+    return _New._Message._mutted.__name__
 
 
 def qualname():
-    """ __qualname__: Todo. """
+    """ func.__qualname__: The full name of the function. """
+
+    class _New:
+        class _EMail:
+            @staticmethod
+            def _sound():
+                pass
+
+    return ''.join(_New._EMail._sound.__qualname__.split('.')[-3:])
 
 
 def func():
-    """ __func__: Todo. """
+    """ obj.func.__func__: The unbound version of an instance method. """
+
+    class _ItemClass:
+        def _function(self):
+            return self
+
+    item = _ItemClass()
+    return item._function.__func__("low battery chime")
 
 
-def self__attribute():
-    """ __self__: Todo. """
+def self_attribute():
+    """ obj.func.__self__: Instance bounded to a method. """
+
+    class _ItemClass:
+        def _function(self):
+            return "device restart tone"
+
+    item = _ItemClass()._function.__self__
+    return item._function()
 
 
 # category: conversions
@@ -572,38 +644,6 @@ def format_method():
     return format(_Formatable(), "hit my {}")
 
 
-def repr_method():
-    """ repr: Basic representation of an item. """
-
-    class _Representable:
-        def __repr__(self):
-            return "<? deep soul ?>"
-
-    return repr(_Representable())
-
-
-def round_method():
-    """ round: Round an item to the closest integer. """
-
-    class _Round:
-        def __round__(self, precision=0):
-            return 10**(-precision)
-
-    return round(_Round(), 3)
-
-
-def floor_metod():
-    """ __floor__: Todo. """
-
-
-def ceil_method():
-    """ __ceil__: Todo. """
-
-
-def trunc_method():
-    """ __trunc__: Todo. """
-
-
 def hash_method():
     """ hash: An integer represetation of a value of an object. """
 
@@ -612,6 +652,56 @@ def hash_method():
             return 10001
 
     return hash(_Hashable())
+
+
+def repr_method():
+    """ repr: Basic representation of an item. """
+
+    class _Representable:
+        def __repr__(self):
+            return "<- deep soul ->"
+
+    return repr(_Representable())
+
+
+def round_method():
+    """ round: Round an item to the closest integer. """
+
+    class _Pi:
+        def __round__(self, precision=0):
+            return float('3.1415'[:precision+2])
+
+    return round(_Pi(), 2)
+
+
+def floor_method():
+    """ math.floor(obj): Round to the nearest lower integer. """
+
+    class _MinusPi:
+        def __floor__(self):
+            return -4
+
+    return math.floor(_MinusPi())
+
+
+def ceil_method():
+    """ math.ceil(obj): Round to the nearest greater integer. """
+
+    class _Pi:
+        def __ceil__(self):
+            return 4
+
+    return math.ceil(_Pi())
+
+
+def trunc_method():
+    """ math.trunc(obj): Round to the integer nearest to zero. """
+
+    class _MinusPi:
+        def __trunc__(self):
+            return -3
+
+    return math.trunc(_MinusPi())
 
 
 # category: serialization
