@@ -29,11 +29,13 @@ _TEMPLATE_PREFIX = """
 
 """
 
-_CATEGORY_TEMPLATE = """{category}
+_CATEGORY_TEMPLATE = """{step} {category}
 
 
 {methods}
 """
+
+_STEP_TEMPLATE = "{current_category}/{nb_categories}"
 
 _METHOD_TEMPLATE = """  {method_upper}: {doc}
     |
@@ -100,7 +102,10 @@ def show_sample(module):
         methods_info, key=lambda x: x['category'])
 
     text = _TEMPLATE_PREFIX.format(module_doc=_bold(module.__doc__.upper()))
-    for category_name, category_methods_info in grouped_catergories:
+    nb_categories = len(set(
+        method_info['category'] for method_info in methods_info))
+    for current_category, (category_name, category_methods_info) in enumerate(
+            grouped_catergories):
 
         methods_text = ''
         for method_info in category_methods_info:
@@ -117,6 +122,9 @@ def show_sample(module):
                 codelines=codelines_text.rstrip())
 
         text += _CATEGORY_TEMPLATE.format(
+            step=_bold(_STEP_TEMPLATE.format(
+                current_category=current_category+1,
+                nb_categories=nb_categories)),
             category=_underline(category_name.upper()),
             methods=methods_text)
 
