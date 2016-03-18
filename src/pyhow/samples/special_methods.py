@@ -447,7 +447,7 @@ def weakref_attribute():
 def annotations():
     """ func.__annotations__: Annotations for function parameters. """
 
-    def _function(value:int) -> float:
+    def _function(value: int) -> float:
         return float(value)
 
     return (
