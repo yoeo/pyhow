@@ -68,8 +68,8 @@ def _underline(text):
     return ''.join('_' + '\b' + ch for ch in text)
 
 
-def show_sample(module):
-    """ Print sample modules. """
+def _extract_methods_info(module):
+    """ Extract methods data from a given python modules. """
 
     categories = [('uncategorized', -1)]
     categories += [
@@ -95,9 +95,16 @@ def show_sample(module):
                 category_name for category_name, category_line_number in
                 categories if line_number > category_line_number][-1],
         })
+    return methods_info
 
+
+def show_sample(module):
+    """ Print sample modules. """
+
+    methods_info = _extract_methods_info(module)
     methods_info = sorted(methods_info, key=lambda x: x['name'])
     methods_info = sorted(methods_info, key=lambda x: x['category'])
+
     grouped_catergories = itertools.groupby(
         methods_info, key=lambda x: x['category'])
 
