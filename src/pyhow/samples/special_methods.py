@@ -848,22 +848,27 @@ def enter_exit():
 # category: asynchronious operations
 
 
+# TODO: async with, new in python 3.5
 def aenter():
     """ __aenter__: Todo. """
 
 
+# TODO: async with, new in python 3.5
 def aexit():
     """ __aexit__: Todo. """
 
 
+# TODO: async for, new in python 3.5
 def aiter():
     """ __aiter__: Todo. """
 
 
+# TODO: async for, new in python 3.5
 def anext():
     """ __anext__: Todo. """
 
 
+# TODO: async def, new in python 3.5
 def await():
     """ __await__: Todo. """
 
@@ -872,78 +877,186 @@ def await():
 
 
 def add_operator():
-    """ __add__: Todo. """
+    """ +: Addition operator. """
+
+    class Operand:
+        def __add__(self, other):
+            return "alternative <{}>".format(other)
+
+    return Operand() + "jazz"
 
 
 def and_operator():
-    """ __and__: Todo. """
+    """ &: Bitwise "and" operator. """
+
+    class Operand:
+        def __and__(self, other):
+            return " and ".join(('rhythm', other))
+
+    return Operand() & 'blues'
 
 
 def divmod_operator():
-    """ __divmod__: Todo. """
+    """ divmod(obj, other): Divison and modulo operator. """
+
+    class Operand:
+        def __divmod__(self, other):
+            return (91, other % 91)
+
+    return "{}{} techno".format(*divmod(Operand(), 92))
 
 
 def floordiv_operator():
-    """ __floordiv__: Todo. """
+    """ //: Division and floor operator. """
+
+    class Operand:
+        def __floordiv__(self, other):
+            return math.floor(34/other)
+
+    return Operand() // 5
 
 
 def lshift_operator():
-    """ __lshift__: Todo. """
+    """ <<: Shift left operator. """
+
+    class Operand:
+        def __lshift__(self, other):
+            return "hip-hop" + "!" * other
+
+    return Operand() << 5
 
 
 def invert_operator():
-    """ __invert__: Todo. """
+    """ ~: Bitwise "not" operator. """
+
+    class Operand:
+        def __invert__(self):
+            return "no boogie woogie"
+
+    return ~Operand()
 
 
 def mod_operator():
-    """ __mod__: Todo. """
+    """ %: Modulo operator. """
+
+    class Operand:
+        def __mod__(self, other):
+            return 34 - other * (34 // other)
+
+    return Operand() % 5
 
 
+# TODO: @ operator, new in python 3.5
 def matmul_operator():
-    """ __matmul__: Todo. """
+    """ @: Matrice multiplication operator. """
 
 
 def mul_operator():
-    """ __mul__: Todo. """
+    """ *: Multiplication operator. """
+
+    class Operand:
+        def __mul__(self, other):
+            return "~".join("pop" for _ in range(other))
+
+    return Operand() * 3
 
 
 def neg_operator():
-    """ __neg__: Todo. """
+    """ -: Unary negation operator. """
+
+    class Operand:
+        def __neg__(self):
+            return "no boogie woogie"
+
+    return -Operand()
 
 
 def or_operator():
-    """ __or__: Todo. """
+    """ |: Bitwise "or" operator. """
+
+    class Operand:
+        def __or__(self, other):
+            return " ~or~ ".join(('east coast', other))
+
+    return Operand() | 'dirty south'
 
 
 def pos_operator():
-    """ __pos__: Todo. """
+    """ +: Unary plus operator. """
+
+    class Operand:
+        def __pos__(self):
+            return "happy disco"
+
+    return +Operand()
 
 
 def pow_operator():
-    """ __pow__: Todo. """
+    """ **: Power operator. """
+
+    class Operand:
+        def __pow__(self, other):
+            return "powefull {}".format(other)
+
+    return Operand()**'electro'
+
 
 
 def rshift_operator():
-    """ __rshift__: Todo. """
+    """ >>: Shift right operator. """
+
+    class Operand:
+        def __rshift__(self, other):
+            return "funky funk"[:-other]
+
+    return Operand() >> 5
 
 
 def sub_operator():
-    """ __sub__: Todo. """
+    """ -: Substraction operator. """
+
+    class Operand:
+        def __sub__(self, other):
+            return "barbershop a cappella".replace(other, '').strip()
+
+    return Operand() - 'barbershop'
 
 
 def truediv_operator():
-    """ __truediv__: Todo. """
+    """ /: Division operator. """
+
+    class Operand:
+        def __truediv__(self, other):
+            return "hipster R&B"
+
+    return Operand() / 0
 
 
 def xor_operator():
-    """ __xor__: Todo. """
+    """ ^: Exclusive "or" operator. """
+
+    class Operand:
+        def __xor__(self, other):
+            return "spiritual (^ ^) {}".format(other)
+
+    return Operand() ^ 'music'
 
 
 # category: numerical operators, inplace changes
 
 
 def iadd():
-    """ __iadd__: Todo. """
+    """ +: Unary plus operator. """
+
+    class Operand:
+        def __iadd__(self, other):
+            self.value = " + ".join(('rock', other))
+        def __repr__():
+            return self.value
+
+    item = Operand()
+    item += 'roll'
+    return item
 
 
 def iand():
