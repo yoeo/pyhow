@@ -1,5 +1,6 @@
 """ Play with class and object implementations. """
 
+import abc
 import weakref
 
 
@@ -99,7 +100,20 @@ def instancecheck_method():
 
 
 def prepare():
-    """ __prepare__: Todo. """
+    """ Cls(): Create the attributes dict needed to produce a new instance. """
+
+    class _MetaBase(type):
+        @staticmethod
+        def __prepare__(class_name, bases, **kw):
+            namespace = kw.copy()
+            namespace.update(
+                {'{}_value'.format(class_name.lower()): "prepared"})
+            return namespace
+
+    class _ItemClass(metaclass=_MetaBase):
+        pass
+
+    return _ItemClass()._itemclass_value
 
 
 def subclasscheck_method():
@@ -117,7 +131,28 @@ def subclasscheck_method():
 
 
 def subclasshook():
-    """ __subclasshook__: Todo. """
+    """ isinstance, issubclass: inheritance check for Abstract Base Classes. """
+
+    class _AbstractBase(metaclass=abc.ABCMeta):
+        @classmethod
+        def __subclasshook__(cls, associated_class):
+            return hasattr(associated_class, 'get_value')
+
+    class _SubClass:
+        def get_value(self):
+            return "subclass check OK"
+
+    class _NonSubClass:
+        pass
+
+    _AbstractBase.register(_NonSubClass)
+    _AbstractBase.register(_SubClass)
+
+    sub_item = _SubClass()
+    non_sub_item = _NonSubClass()
+    return (
+        not isinstance(non_sub_item, _AbstractBase) and
+        isinstance(sub_item, _AbstractBase) and sub_item.get_value())
 
 
 # category: descriptors
@@ -180,7 +215,7 @@ def set_method():
 
 
 def bases_attribute():
-    """ cls.__bases__: Base classes of the current class. """
+    """ Cls.__bases__: Base classes of the current class. """
 
     class _SubClass(str):
         """ str sub-class. """
@@ -200,6 +235,9 @@ def class_attribute():
 def del_method():
     """ del: Cleanup an item on destroy. """
 
+    # use __del__ with caution
+    # it is difficult to know when the object will be actually removed
+
     context = ""
 
     class _Destroyable:
@@ -213,7 +251,7 @@ def del_method():
 
 
 def dict_attribute():
-    """ cls.__dict__: Bindings for class members. """
+    """ Cls.__dict__: Bindings for class members. """
 
     class _ItemClass:
         def get_message(self):
@@ -235,7 +273,13 @@ def init_method():
 
 
 def mro_attribute():
-    """ __mro__: Todo. """
+    """ Cls.__mro__, super(): List of base types used to process class tree. """
+
+    class _ItemClass(type(...), int):
+        pass
+
+    return "types: {}".format(
+        ' + '.join(cls.__name__ for cls in _ItemClass.__mro__))
 
 
 def new_method():
