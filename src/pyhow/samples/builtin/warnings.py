@@ -1,5 +1,8 @@
 """ Trigger and handle built-in warnings. """
 
+import platform
+import warnings
+
 
 # category: runtime issues
 

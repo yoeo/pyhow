@@ -1,7 +1,10 @@
 """ Custom methods to copy, serialize and unserialize items. """
 
+import copy
+import pickle
 
-# category: copy and serialization
+
+# category: copy
 
 
 def copy_method():
@@ -26,6 +29,9 @@ def deepcopy_method():
             return _Copyable(copy.deepcopy(self.values, memo=memory))
 
     return '~'.join(copy.deepcopy(_Copyable(['anime', 'opening'])).values)
+
+
+# category: serialization
 
 
 def getstate_method():

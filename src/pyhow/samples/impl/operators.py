@@ -1,5 +1,7 @@
 """ Implementation of Python operators. """
 
+import math
+
 
 # category: comparison operator
 

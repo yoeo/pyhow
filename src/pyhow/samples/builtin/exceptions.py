@@ -14,7 +14,6 @@ import gc
 import idlelib.rpc
 import importlib
 import multiprocessing
-import platform
 import pickle
 import os
 import signal
@@ -23,7 +22,6 @@ import socket
 import sys
 import tempfile
 import threading
-import warnings
 import weakref
 
 

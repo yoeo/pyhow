@@ -1,5 +1,7 @@
 """ Play with class and object implementations. """
 
+import weakref
+
 
 # category: object attributes
 
