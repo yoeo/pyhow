@@ -6,19 +6,20 @@ Print show Python sample codes.
 
 import inspect
 import itertools
+import os
 import pydoc
 import sys
 
-import pyhow.samples.builtin_exceptions
-import pyhow.samples.builtin_objects
-import pyhow.samples.lib_collections
-import pyhow.samples.lib_functools
-import pyhow.samples.lib_itertools
-import pyhow.samples.lib_re
-import pyhow.samples.lib_tempfile
+import pyhow.samples.builtin.exceptions
+import pyhow.samples.builtin.objects
+import pyhow.samples.impl.special_methods
+import pyhow.samples.lib.collections
+import pyhow.samples.lib.functools
+import pyhow.samples.lib.itertools
+import pyhow.samples.lib.re
+import pyhow.samples.lib.tempfile
 import pyhow.samples.regular_expressions
 import pyhow.samples.string_format
-import pyhow.samples.special_methods
 
 
 _CATEGORY_TAG = "# category: "
@@ -52,9 +53,11 @@ _CODELINE_TEMPLATE = "    |  {codeline}"
 def make_samples():
     """ Prepare sample modules. """
 
+    root = 'pyhow.samples.'
     return {
-        name.split('.')[-1]: module for name, module in sys.modules.items() if (
-            name.startswith('pyhow.samples.'))
+        name[len(root):]: module for name, module in sys.modules.items() if (
+            name.startswith(root) and
+            not os.path.basename(module.__file__).startswith('_'))
     }
 
 
