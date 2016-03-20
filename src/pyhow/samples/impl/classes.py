@@ -3,7 +3,7 @@
 import weakref
 
 
-# category: object attributes
+# category: attributes manipulation
 
 
 def delattr_method():
@@ -81,7 +81,7 @@ def setattr_method():
     return _ItemClass() and _ItemClass.value
 
 
-# category: object class hierarchy
+# category: class hierarchy
 
 
 def instancecheck_method():
@@ -120,26 +120,63 @@ def subclasshook():
     """ __subclasshook__: Todo. """
 
 
-# category: object descriptors
+# category: descriptors
 
 
 def delete_method():
-    """ __delete__: Todo. """
+    """ del obj.attr: Delete an attribute handled by another class. """
+
+    class _Descriptor:
+        def __init__(self):
+            self.active = True
+        def __delete__(self, item):
+            item.shadow_value = "attribute deleted"
+            self.active = False
+        def __get__(self, *_):
+            if not self.active:
+                raise AttributeError('attribute not found')
+            return "a value"
+
+    class _ItemClass:
+        value = _Descriptor()
+
+    item = _ItemClass()
+    del item.value
+    try:
+        return item.value
+    except AttributeError:
+        return item.shadow_value
 
 
 def get_method():
-    """ __get__: Todo. """
+    """ obj.attr: Link an attribute to a class that computes its value. """
+
+    class _Descriptor:
+        def __get__(self, item, item_class):
+            return "generated value for an {0.__name__}".format(item_class)
+
+    class _ItemClass:
+        value = _Descriptor()
+
+    return _ItemClass().value
 
 
 def set_method():
-    """ __set__: Todo. """
+    """ obj.attr=: Link an attribute to a class changes its value. """
+
+    class _Descriptor:
+        def __set__(self, item, value):
+            item.shadow_value = "stored {}".format(value)
+
+    class _ItemClass:
+        value = _Descriptor()
+
+    item = _ItemClass()
+    item.value = 44
+    return item.shadow_value
 
 
-def mro_attribute():
-    """ __mro__: Todo. """
-
-
-# category: object model
+# category: class model
 
 
 def bases_attribute():
@@ -195,6 +232,10 @@ def init_method():
             self.value = value
 
     return _ItemClass("silento").value
+
+
+def mro_attribute():
+    """ __mro__: Todo. """
 
 
 def new_method():
