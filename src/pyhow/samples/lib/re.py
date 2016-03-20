@@ -1,4 +1,4 @@
-""" re library samples. """
+""" re library: Extract information from text with regular expressions. """
 
 import re
 

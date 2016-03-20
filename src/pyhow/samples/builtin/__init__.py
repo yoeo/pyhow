@@ -1,4 +1,4 @@
-""" pyhow.samples.impl module
+""" pyhow.samples.builtin module
 
 Python builtin features.
 

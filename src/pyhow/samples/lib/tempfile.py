@@ -1,4 +1,4 @@
-""" tempfile library samples. """
+""" tempfile library: Work with temporary files and directories. """
 
 import os
 import tempfile

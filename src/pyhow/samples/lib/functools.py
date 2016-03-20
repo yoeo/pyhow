@@ -1,4 +1,4 @@
-""" functools library samples. """
+""" functools library: Compose functions. """
 
 import functools
 

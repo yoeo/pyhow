@@ -1,11 +1,13 @@
-""" Built-in exceptions samples. """
+""" Generate and catch built-in exceptions. """
 
+"""
 # ignore some coding flaws
 # pylint: disable=exec-used
 # pylint: disable=broad-except
 # pylint: disable=deprecated-method
 # pylint: disable=undefined-variable
 # pylint: disable=unused-variable
+"""
 
 import codecs
 import gc
@@ -528,122 +530,4 @@ def permission_error():
     finally:
         os.chmod(filename, 0o777)
         os.remove(filename)
-
-
-# category: warnings
-
-
-def byte_warning():
-    """ Wrong Byte operation. """
-    warnings.simplefilter('error', BytesWarning)
-    try:
-        # can be generated with: $ python3 -bb -c "'a'==b'a'"
-        warnings.warn('beware', BytesWarning)
-    except BytesWarning:
-        return "are you mixing bytes and strings?"
-    finally:
-        warnings.simplefilter('ignore', BytesWarning)
-
-
-def deprecatioin_warning():
-    """ Using depreticated features. """
-    warnings.simplefilter('error', DeprecationWarning)
-    try:
-        platform.popen('/bin/true')
-    except DeprecationWarning:
-        return "use subprocess instead"
-    finally:
-        warnings.simplefilter('ignore', DeprecationWarning)
-
-
-def future_warning():
-    """ Using element / syntax that will soon change. """
-    warnings.simplefilter('error', FutureWarning)
-    try:
-        # just throwing the exception...
-        warnings.warn("won't implement", FutureWarning)
-    except FutureWarning:
-        return "forget this feature"
-    finally:
-        warnings.simplefilter('ignore', FutureWarning)
-
-
-def import_warning():
-    """ Issues during import. """
-    warnings.simplefilter('error', ImportWarning)
-    try:
-        # just throwing the exception...
-        warnings.warn("not fully loaded", ImportWarning)
-    except ImportWarning:
-        return "module not correctly loaded"
-
-
-def pending_depretication_warning():
-    """ Using features that will soon be depreticated. """
-    warnings.simplefilter('error', PendingDeprecationWarning)
-    try:
-        # just throwing the exception...
-        warnings.warn('soon depreticated', PendingDeprecationWarning)
-    except PendingDeprecationWarning:
-        return "avoid this feature"
-    finally:
-        warnings.simplefilter('ignore', PendingDeprecationWarning)
-
-
-def ressource_warning():
-    """ Bad resource usage. """
-    warnings.simplefilter('error', ResourceWarning)
-    try:
-        # just throwing the exception...
-        warnings.warn("unfreed", ResourceWarning)
-    except ResourceWarning:
-        return "must clean all resources"
-    finally:
-        warnings.simplefilter('ignore', ResourceWarning)
-
-
-def runtime_warning():
-    """ Abnormal behaviour during runtime"""
-    warnings.simplefilter('error', RuntimeWarning)
-    try:
-        # just throwing the exception...
-        warnings.warn("can fail", RuntimeWarning)
-    except RuntimeWarning:
-        return "something might go wrong"
-    finally:
-        warnings.simplefilter('ignore', RuntimeWarning)
-
-
-def syntax_warning():
-    """ Strange syntax. """
-    warnings.simplefilter('error', SyntaxWarning)
-    try:
-        # just throwing the exception...
-        warnings.warn("bad written", SyntaxWarning)
-    except SyntaxWarning:
-        return "check the syntax"
-    finally:
-        warnings.simplefilter('ignore', SyntaxWarning)
-
-
-def unicode_warning():
-    """ Unicode convertion issue. """
-    warnings.simplefilter('error', UnicodeWarning)
-    try:
-        warnings.warn("malformed", UnicodeWarning)
-    except UnicodeWarning:
-        return "check the unicode string"
-    finally:
-        warnings.simplefilter('ignore', UnicodeWarning)
-
-
-def warning():
-    """ Base of all warnings. """
-    warnings.simplefilter('error', Warning)
-    try:
-        warnings.warn("danger", Warning)
-    except Warning:
-        return "something strange might happen"
-    finally:
-        warnings.simplefilter('ignore', Warning)
 

@@ -1,4 +1,4 @@
-""" collections, tools to manage sequence of items. """
+""" collections library: Tools to manage sequence of items. """
 
 import collections
 
