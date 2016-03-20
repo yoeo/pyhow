@@ -3,7 +3,7 @@
 import math
 
 
-# category: comparison operator
+# category: comparison
 
 
 def eq_comparison():
@@ -67,231 +67,361 @@ def ne_comparison():
     return _Comparable() != 'flat' and "epic song"
 
 
-# category: numerical operators
-
-
-def add_operator():
-    """ +: Addition operator. """
-
-    class Operand:
-        def __add__(self, other):
-            return "alternative <{}>".format(other)
-
-    return Operand() + "jazz"
-
-
-def and_operator():
-    """ &: Bitwise "and" operator. """
-
-    class Operand:
-        def __and__(self, other):
-            return " and ".join(('rhythm', other))
-
-    return Operand() & 'blues'
-
-
-def floordiv_operator():
-    """ //: Division and floor operator. """
-
-    class Operand:
-        def __floordiv__(self, other):
-            return math.floor(34/other)
-
-    return Operand() // 5
-
-
-def lshift_operator():
-    """ <<: Shift left operator. """
-
-    class Operand:
-        def __lshift__(self, other):
-            return "hip-hop" + "!" * other
-
-    return Operand() << 5
+# category: unary operators
 
 
 def invert_operator():
     """ ~: Bitwise "not" operator. """
 
-    class Operand:
+    class _Operand:
         def __invert__(self):
             return "no boogie woogie"
 
-    return ~Operand()
-
-
-def mod_operator():
-    """ %: Modulo operator. """
-
-    class Operand:
-        def __mod__(self, other):
-            return 34 - other * (34 // other)
-
-    return Operand() % 5
-
-
-# TODO: @ operator, new in python 3.5
-def matmul_operator():
-    """ @: Matrice multiplication operator. """
-
-
-def mul_operator():
-    """ *: Multiplication operator. """
-
-    class Operand:
-        def __mul__(self, other):
-            return "~".join("pop" for _ in range(other))
-
-    return Operand() * 3
+    return ~_Operand()
 
 
 def neg_operator():
     """ -: Unary negation operator. """
 
-    class Operand:
+    class _Operand:
         def __neg__(self):
             return "no boogie woogie"
 
-    return -Operand()
-
-
-def or_operator():
-    """ |: Bitwise "or" operator. """
-
-    class Operand:
-        def __or__(self, other):
-            return " ~or~ ".join(('east coast', other))
-
-    return Operand() | 'dirty south'
+    return -_Operand()
 
 
 def pos_operator():
     """ +: Unary plus operator. """
 
-    class Operand:
+    class _Operand:
         def __pos__(self):
             return "happy disco"
 
-    return +Operand()
+    return +_Operand()
+
+
+# category: binary operators, left operand implementation
+
+
+def add_operator():
+    """ +: Addition operator. """
+
+    class _Operand:
+        def __add__(self, other):
+            return "alternative <{}>".format(other)
+
+    return _Operand() + "jazz"
+
+
+def and_operator():
+    """ &: Bitwise "and" operator. """
+
+    class _Operand:
+        def __and__(self, other):
+            return " and ".join(('rhythm', other))
+
+    return _Operand() & 'blues'
+
+
+def floordiv_operator():
+    """ //: Division and floor operator. """
+
+    class _Operand:
+        def __floordiv__(self, other):
+            return math.floor(34/other)
+
+    return _Operand() // 5
+
+
+def lshift_operator():
+    """ <<: Shift left operator. """
+
+    class _Operand:
+        def __lshift__(self, other):
+            return "hip-hop" + "!" * other
+
+    return _Operand() << 5
+
+
+def mod_operator():
+    """ %: Modulo operator. """
+
+    class _Operand:
+        def __mod__(self, other):
+            return 34 - other * (34 // other)
+
+    return _Operand() % 5
+
+
+def matmul_operator():
+    """ @: Matrice multiplication operator. """
+
+    # TODO: @ operator, new in python 3.5
+    return NotImplemented
+
+
+def mul_operator():
+    """ *: Multiplication operator. """
+
+    class _Operand:
+        def __mul__(self, other):
+            return "~".join("pop" for _ in range(other))
+
+    return _Operand() * 3
+
+
+def or_operator():
+    """ |: Bitwise "or" operator. """
+
+    class _Operand:
+        def __or__(self, other):
+            return " ~or~ ".join(('east coast', other))
+
+    return _Operand() | 'dirty south'
 
 
 def pow_operator():
     """ **: Power operator. """
 
-    class Operand:
+    class _Operand:
         def __pow__(self, other):
             return "powefull {}".format(other)
 
-    return Operand()**'electro'
+    return _Operand()**'electro'
 
 
 
 def rshift_operator():
     """ >>: Shift right operator. """
 
-    class Operand:
+    class _Operand:
         def __rshift__(self, other):
             return "funky funk"[:-other]
 
-    return Operand() >> 5
+    return _Operand() >> 5
 
 
 def sub_operator():
     """ -: Substraction operator. """
 
-    class Operand:
+    class _Operand:
         def __sub__(self, other):
             return "barbershop a cappella".replace(other, '').strip()
 
-    return Operand() - 'barbershop'
+    return _Operand() - 'barbershop'
 
 
 def truediv_operator():
     """ /: Division operator. """
 
-    class Operand:
+    class _Operand:
         def __truediv__(self, other):
             return "hipster R&B"
 
-    return Operand() / 0
+    return _Operand() / 0
 
 
 def xor_operator():
     """ ^: Exclusive "or" operator. """
 
-    class Operand:
+    class _Operand:
         def __xor__(self, other):
             return "spiritual (^ ^) {}".format(other)
 
-    return Operand() ^ 'music'
+    return _Operand() ^ 'music'
 
 
-# category: numerical operators, inplace changes
+# category: binary operators, inplace changes
 
 
 def iadd():
-    """ +: Unary plus operator. """
+    """ +=: Inplace plus operator. """
 
-    class Operand:
+    class _Operand:
+        def __init__(self):
+            self.value = ''
         def __iadd__(self, other):
             self.value = " + ".join(('rock', other))
-        def __repr__():
-            return self.value
+            return self
 
-    item = Operand()
+    item = _Operand()
     item += 'roll'
-    return item
+    return item.value
 
 
 def iand():
-    """ __iand__: Todo. """
+    """ &=: Inplace bitwise "and" operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __iand__(self, other):
+            self.value = "filtered by {}".format(bin(other))
+            return self
+
+    item = _Operand()
+    item &= 3
+    return item.value
 
 
 def ifloordiv():
-    """ __ifloordiv__: Todo. """
+    """ //=: Inplace floor divide operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __ifloordiv__(self, other):
+            self.value = "int(val/{})".format(other)
+            return self
+
+    item = _Operand()
+    item //= 2
+    return item.value
 
 
 def ilshift():
-    """ __ilshift__: Todo. """
+    """ <<=: Inplace shift left operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __ilshift__(self, other):
+            self.value = "{} digits added".format(other)
+            return self
+
+    item = _Operand()
+    item <<= 4
+    return item.value
 
 
 def imatmul():
-    """ __imatmul__: Todo. """
+    """ @=: Inplace matrice multiplication operator. """
+
+    # TODO: @ operator, new in python 3.5
+    return NotImplemented
 
 
 def imod():
-    """ __imod__: Todo. """
+    """ %=: Inplace modulo operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __imod__(self, other):
+            self.value = "less_than({})".format(other)
+            return self
+
+    item = _Operand()
+    item %= 4
+    return item.value
 
 
 def imul():
-    """ __imul__: Todo. """
+    """ *=: Inplace multiplication operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __imul__(self, other):
+            self.value = "{} times".format(other)
+            return self
+
+    item = _Operand()
+    item *= 5
+    return item.value
 
 
 def ior():
-    """ __ior__: Todo. """
+    """ |=: Inplace bitwise "or" operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __ior__(self, other):
+            self.value = "filled with {}".format(bin(other))
+            return self
+
+    item = _Operand()
+    item |= 6
+    return item.value
 
 
 def ipow():
-    """ __ipow__: Todo. """
+    """ **=: Inplace power operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __ipow__(self, other):
+            self.value = "exponent_{}".format(other)
+            return self
+
+    item = _Operand()
+    item **= 7
+    return item.value
 
 
 def irshift():
-    """ __irshift__: Todo. """
+    """ >>=: Inplace right shift operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __irshift__(self, other):
+            self.value = "erase {} bits".format(other)
+            return self
+
+    item = _Operand()
+    item >>= 8
+    return item.value
 
 
 def isub():
-    """ __isub__: Todo. """
+    """ -=: Inplace subtract operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __isub__(self, other):
+            self.value = "{} missing".format(other)
+            return self
+
+    item = _Operand()
+    item -= 9
+    return item.value
 
 
 def itruediv():
-    """ __itruediv__: Todo. """
+    """ /=: Inplace divide operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __itruediv__(self, other):
+            self.value = "can you divide by {}".format(other)
+            return self
+
+    item = _Operand()
+    item /= 0
+    return item.value
 
 
 def ixor():
-    """ __ixor__: Todo. """
+    """ ^=: Inplace exclusive "or" operator. """
+
+    class _Operand:
+        def __init__(self):
+            self.value = ''
+        def __ixor__(self, other):
+            self.value = "remove bits matching {}".format(bin(other))
+            return self
+
+    item = _Operand()
+    item ^= 9
+    return item.value
 
 
-# category: numerical operators, right operand implementation
+# category: binary operators, right operand implementation
 
 
 def radd():
@@ -315,7 +445,10 @@ def rlshift():
 
 
 def rmatmul():
-    """ __rmatmul__: Todo. """
+    """ @: Right operand matrice multiply operator. """
+
+    # TODO: @ operator, new in python 3.5
+    return NotImplemented
 
 
 def rmod():
