@@ -79,16 +79,6 @@ def abs_method():
     return abs(_Absolute())
 
 
-def divmod_operator():
-    """ divmod(obj, other): Divison and modulo operation. """
-
-    class _Divisible:
-        def __divmod__(self, other):
-            return (91, other % 91)
-
-    return "{}{} techno".format(*divmod(_Divisible(), 92))
-
-
 def format_method():
     """ format: Formated representation of an item. """
 

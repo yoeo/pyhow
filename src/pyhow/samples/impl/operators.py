@@ -123,6 +123,16 @@ def and_operator():
     return _Operand() & 'blues'
 
 
+def divmod_operator():
+    """ divmod(obj, other): Divison and modulo operator. """
+
+    class _Operand:
+        def __divmod__(self, other):
+            return (91, other % 91)
+
+    return "{}{} techno".format(*divmod(_Operand(), 92))
+
+
 def floordiv_operator():
     """ //: Division and floor operator. """
 
@@ -425,23 +435,53 @@ def ixor():
 
 
 def radd():
-    """ __radd__: Todo. """
+    """ +: Right operand addition operator. """
+
+    class _Operand:
+        def __radd__(self, other):
+            return "{} more".format(other)
+
+    return 5 + _Operand()
 
 
 def rand():
-    """ __rand__: Todo. """
+    """ &: Right operand bitwise "and" operator. """
+
+    class _Operand:
+        def __rand__(self, other):
+            return "choose bits from {}".format(other)
+
+    return 4 & _Operand()
 
 
 def rdivmod():
-    """ __rdivmod__: Todo. """
+    """ rdivmod(obj, other): Right operand divison and modulo operation. """
+
+    class _Operand:
+        def __rdivmod__(self, other):
+            return "13_divided & 13_modulated".format(other)
+
+    return divmod(13, _Operand())
 
 
 def rfloordiv():
-    """ __rfloordiv__: Todo. """
+    """ : Right operand floor divide operator. """
+
+    class _Operand:
+        def __rfloordiv__(self, other):
+            return "zero" if other == 0 else "something"
+
+    return  0 // _Operand()
 
 
 def rlshift():
-    """ __rlshift__: Todo. """
+    """ : Right operand shift left operator. """
+
+    class _Operand:
+        def __rlshift__(self, other):
+            return "{} and many 0s".format(other)
+
+    return  1 << _Operand()
 
 
 def rmatmul():
@@ -452,33 +492,81 @@ def rmatmul():
 
 
 def rmod():
-    """ __rmod__: Todo. """
+    """ %: Right operand modulo operator. """
+
+    class _Operand:
+        def __rmod__(self, other):
+            return "{} modulo self".format(other)
+
+    return 2 % _Operand()
 
 
 def rmul():
-    """ __rmul__: Todo. """
+    """ *: Right operand multiply operator. """
+
+    class _Operand:
+        def __rmul__(self, other):
+            return "{} repeated".format(other)
+
+    return  3 * _Operand()
 
 
 def ror():
-    """ __ror__: Todo. """
+    """ |: Right operand bitwise "or" operator. """
+
+    class _Operand:
+        def __ror__(self, other):
+            return "keep true bits of {}".format(other)
+
+    return  4 | _Operand()
 
 
 def rpow():
-    """ __rpow__: Todo. """
+    """ **: Right operand power operator. """
+
+    class _Operand:
+        def __rpow__(self, other):
+            return "elevated {} to power".format(other)
+
+    return  5**_Operand()
 
 
 def rrshift():
-    """ __rrshift__: Todo. """
+    """ >>: Right operand shift right operator. """
+
+    class _Operand:
+        def __rrshift__(self, other):
+            return "low bits taken from {}".format(other)
+
+    return  6 >> _Operand()
 
 
 def rsub():
-    """ __rsub__: Todo. """
+    """ -: Right operand substract operator. """
+
+    class _Operand:
+        def __rsub__(self, other):
+            return "inferior to {}".format(other)
+
+    return  7 - _Operand()
 
 
 def rtruediv():
-    """ __rtruediv__: Todo. """
+    """ /: Right operand divide operator. """
+
+    class _Operand:
+        def __rtruediv__(self, other):
+            return "inverted" if other == 1 else "something"
+
+    return  1 / _Operand()
 
 
 def rxor():
-    """ __rxor__: Todo. """
+    """ ^: Right operand exclusive "or" operator. """
+
+    class _Operand:
+        def __rxor__(self, other):
+            return "select unmatching bits from {}".format(other)
+
+    return  8 ^ _Operand()
 
