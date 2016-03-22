@@ -1,5 +1,9 @@
 """ Implementation of Python operators. """
 
+# using unfinished example classes
+# pylint: disable=no-self-use
+# pylint: disable=too-few-public-methods
+
 import math
 
 
@@ -459,7 +463,7 @@ def rdivmod():
 
     class _Operand:
         def __rdivmod__(self, other):
-            return "13_divided & 13_modulated".format(other)
+            return "{0}_divided & {0}_modulated".format(other)
 
     return divmod(13, _Operand())
 

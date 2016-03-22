@@ -38,16 +38,16 @@ def chain_map_hierarchy():
 def counter():
     """ Counter: Dict-like item to count number of occurences. """
 
-    counter = collections.Counter("Peach")
-    missing_to_zero = counter['z'] == 0
-    return missing_to_zero and "Princess {}".format(''.join(counter.keys()))
+    occurences = collections.Counter("Peach")
+    missing_to_zero = occurences['z'] == 0
+    return missing_to_zero and "Princess {}".format(''.join(occurences.keys()))
 
 
 def counter_most_common():
     """ Counter.most_common: Most common items, with nb occurences. """
 
-    counter = collections.Counter("Luigi")
-    item, nb_occurences = counter.most_common(1)[0]
+    occurences = collections.Counter("Luigi")
+    item, nb_occurences = occurences.most_common(1)[0]
     return item * nb_occurences
 
 
@@ -60,29 +60,29 @@ def counter_elements():
 def counter_subtract():
     """ Counter.subtract: Substract counts, c1 -= c2. """
 
-    counter = collections.Counter("Kart race")
-    counter.subtract(collections.Counter("accidented Kirrrby"))
-    return "Starting from {}-{}".format(*counter.most_common(1)[0])
+    occurences = collections.Counter("Kart race")
+    occurences.subtract(collections.Counter("accidented Kirrrby"))
+    return "Starting from {}-{}".format(*occurences.most_common(1)[0])
 
 
 def counter_update():
     """ Counter.update: Add counts, c1 += c2. """
 
-    counter = collections.Counter("shell")
-    counter.update(collections.Counter("lightning"))
-    return "power-ups have {}ls".format(counter['l'])
+    occurences = collections.Counter("shell")
+    occurences.update(collections.Counter("lightning"))
+    return "power-ups have {}ls".format(occurences['l'])
 
 
 def counter_operations():
     """ Numerical operations with counter elements: +, -, &, |. """
 
-    counter_a = collections.Counter('Toad')
-    counter_b = collections.Counter('Roy')
+    occurences_a = collections.Counter('Toad')
+    occurences_b = collections.Counter('Roy')
     # a + b     -> a[x] + b[x]    , x € keys(a, b)
     # a - b     -> a[x] - b[x]    , x € keys(a, b)
     # a & b     -> min(a[x], b[x]), x € keys(a, b)
     # a | b     -> max(a[x], b[x]), x € keys(a, b)
-    return '(-_-)'.join((counter_a - counter_b).elements())
+    return '(-_-)'.join((occurences_a - occurences_b).elements())
 
 
 # category: deque

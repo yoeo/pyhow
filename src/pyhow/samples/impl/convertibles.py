@@ -1,5 +1,9 @@
 """ Handle items conversion and value extraction. """
 
+# using unfinished example classes
+# pylint: disable=no-self-use
+# pylint: disable=too-few-public-methods
+
 import math
 
 

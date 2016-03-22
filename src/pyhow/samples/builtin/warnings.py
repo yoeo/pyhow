@@ -1,5 +1,8 @@
 """ Trigger and handle built-in warnings. """
 
+# using depreticated function
+# pylint: disable=deprecated-method
+
 import platform
 import warnings
 

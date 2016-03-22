@@ -1,5 +1,8 @@
 """ Custom methods to copy, serialize and unserialize items. """
 
+# using unfinished example classes
+# pylint: disable=too-few-public-methods
+
 import copy
 import pickle
 
@@ -57,6 +60,8 @@ def reduce_method():
         return item
 
     class _Serializable:
+        def __init__(self):
+            self.value = ''
         def __reduce__(self):
             return (_build, ('intermission',))
 
@@ -78,6 +83,8 @@ def reduce_ex_method():
         return item
 
     class _Serializable:
+        def __init__(self):
+            self.value = ''
         def __reduce_ex__(self, protocol_version):
             if protocol_version == 0:
                 return (_build, ('long intro music',))

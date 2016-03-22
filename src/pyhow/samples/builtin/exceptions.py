@@ -1,13 +1,11 @@
 """ Generate and catch built-in exceptions. """
 
-"""
 # ignore some coding flaws
-# pylint: disable=exec-used
 # pylint: disable=broad-except
 # pylint: disable=deprecated-method
+# pylint: disable=exec-used
 # pylint: disable=undefined-variable
 # pylint: disable=unused-variable
-"""
 
 import codecs
 import gc

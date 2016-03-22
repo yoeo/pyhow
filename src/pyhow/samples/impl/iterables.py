@@ -1,7 +1,11 @@
 """ Sequences implementation, create kind of iterators, lists, maps... """
 
+# using unfinished example classes
+# pylint: disable=no-self-use
+# pylint: disable=too-few-public-methods
 
-# category: iterable, e.g. list
+
+# category: iterable, e.g. list, set
 
 
 def iter_method():

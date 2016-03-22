@@ -1,5 +1,11 @@
 """ Create function-like objects. """
 
+# using unfinished example classes
+# pylint: disable=eval-used
+# pylint: disable=no-member
+# pylint: disable=protected-access
+# pylint: disable=too-few-public-methods
+
 
 # category: functions
 
@@ -51,7 +57,7 @@ def defaults():
     """ func.__defaults__: Default values of function parameters. """
 
     def _function(value="notification sound"):
-        pass
+        return value
 
     return _function.__defaults__[0]
 
@@ -69,7 +75,7 @@ def kwdefaults():
     """ func.__kwdefaults__: Default values of keyword only parameters. """
 
     def _function(*_, value="phone alarm"):
-        pass
+        return value
 
     return _function.__kwdefaults__['value']
 
@@ -114,7 +120,7 @@ def self_attribute():
 
     class _ItemClass:
         def _function(self):
-            return "device restart tone"
+            return self and "device restart tone"
 
     item = _ItemClass()._function.__self__
     return item._function()

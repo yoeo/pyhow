@@ -1,5 +1,13 @@
 """ Play with class and object implementations. """
 
+# using unfinished example classes
+# pylint: disable=assigning-non-slot
+# pylint: disable=attribute-defined-outside-init
+# pylint: disable=no-member
+# pylint: disable=protected-access
+# pylint: disable=too-few-public-methods
+# pylint: disable=unused-variable
+
 import abc
 import weakref
 
@@ -89,7 +97,7 @@ def instancecheck_method():
     """ isinstance: Check if item is an instance of a class. """
 
     class _MetaBase(type):
-        def __instancecheck__(self, item):
+        def __instancecheck__(cls, item):
             return 'x' in item
 
     class _Base(metaclass=_MetaBase):
@@ -104,13 +112,13 @@ def prepare():
 
     class _MetaBase(type):
         @staticmethod
-        def __prepare__(class_name, bases, **kw):
+        def __prepare__(class_name, _: 'baseclasses', **kw):
             namespace = kw.copy()
             namespace.update(
                 {'{}_value'.format(class_name.lower()): "prepared"})
             return namespace
 
-    class _ItemClass(metaclass=_MetaBase):
+    class _ItemClass(list, metaclass=_MetaBase):
         pass
 
     return _ItemClass()._itemclass_value
@@ -120,8 +128,8 @@ def subclasscheck_method():
     """ issubclass: Check if a class is a subclass of an other one. """
 
     class _MetaBase(type):
-        def __subclasscheck__(self, cls):
-            return 's' in cls.__name__
+        def __subclasscheck__(cls, subclass):
+            return 's' in subclass.__name__
 
     class _Base(metaclass=_MetaBase):
         pass
@@ -139,8 +147,8 @@ def subclasshook():
             return hasattr(associated_class, 'get_value')
 
     class _SubClass:
-        def get_value(self):
-            return "subclass check OK"
+        def _get_value(self):
+            return self and "subclass check OK"
 
     class _NonSubClass:
         pass
@@ -152,7 +160,7 @@ def subclasshook():
     non_sub_item = _NonSubClass()
     return (
         not isinstance(non_sub_item, _AbstractBase) and
-        isinstance(sub_item, _AbstractBase) and sub_item.get_value())
+        isinstance(sub_item, _AbstractBase) and sub_item._get_value())
 
 
 # category: descriptors
