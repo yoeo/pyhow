@@ -112,11 +112,8 @@ def prepare():
 
     class _MetaBase(type):
         @staticmethod
-        def __prepare__(class_name, _: 'baseclasses', **kw):
-            namespace = kw.copy()
-            namespace.update(
-                {'{}_value'.format(class_name.lower()): "prepared"})
-            return namespace
+        def __prepare__(class_name, _: 'baseclasses'):
+            return {'{}_value'.format(class_name.lower()): "prepared"}
 
     class _ItemClass(list, metaclass=_MetaBase):
         pass

@@ -17,8 +17,9 @@ import pyhow.samples.impl.async
 import pyhow.samples.impl.classes
 import pyhow.samples.impl.convertibles
 import pyhow.samples.impl.functions
-import pyhow.samples.impl.iterables
 import pyhow.samples.impl.operators
+import pyhow.samples.impl.iterables
+import pyhow.samples.impl.metaclasses
 import pyhow.samples.impl.serializables
 import pyhow.samples.lib.collections
 import pyhow.samples.lib.functools
@@ -69,12 +70,12 @@ def make_samples():
 
 
 def _bold(text):
-    """Format a string in bold by overstriking."""
+    """ Format a string in bold by overstriking. """
     return ''.join(ch + '\b' + ch for ch in text)
 
 
 def _underline(text):
-    """Format a string by overstriking."""
+    """ Format a string by overstriking. """
     return ''.join('_' + '\b' + ch for ch in text)
 
 
