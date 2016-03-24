@@ -1,5 +1,11 @@
 """ Tweak metaclasses, classes that generates classes. """
 
+# using unfinished example classes
+# pylint: disable=missing-docstring
+# pylint: disable=no-member
+# pylint: disable=too-few-public-methods
+# pylint: disable=unused-variable
+
 
 # category: class creation
 
@@ -10,7 +16,8 @@ def prepare():
     class Meta(type):
         @staticmethod
         def __prepare__(class_name, bases):
-            return {'value': "attribute added in namespace"}
+            return {'value': "attribute added in {}[{}] namespace".format(
+                class_name, ', '.join(base.__name__ for base in bases))}
 
     class ItemClass(int, metaclass=Meta):
         pass
@@ -27,10 +34,12 @@ def new():
             cls = type.__new__(mcs, class_name, bases, namespace)
             return cls
 
-        def __prepare__(class_name, bases, **_):
-            return {}
+        @staticmethod
+        def __prepare__(*_, **kw):
+            return kw.copy()
 
-        def __init__(cls, class_name, bases, namespace, some_argument=None):
+        def __init__(cls, *args, some_argument=None):
+            super().__init__(*args)
             cls.some_attribute = some_argument
 
     class ItemClass(int, metaclass=Meta, some_argument=...):
@@ -89,9 +98,9 @@ def operator():
     class ItemClass(metaclass=Meta):
         pass
 
-    x = ItemClass()
-    y = ItemClass()
-    couple = (type(x) * type(y))(x, y)
+    value_x = ItemClass()
+    value_y = ItemClass()
+    couple = (type(value_x) * type(value_y))(value_x, value_y)
     return "produced class is {}".format(couple.__class__.__name__)
 
 
