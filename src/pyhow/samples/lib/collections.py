@@ -6,8 +6,8 @@ import collections
 # category: chained dictionaries
 
 
-def chain_map_maps():
-    """ chain_map.maps(): Linked dictionaries. """
+def chainmap_maps():
+    """ obj.maps(): Linked dictionaries. """
 
     map_one = {1: 0}
     map_two = {99: "Link"}
@@ -15,8 +15,8 @@ def chain_map_maps():
     return map_one in chained.maps and chained[99]
 
 
-def chain_map_hierarchy():
-    """ chain_map.parents(), chain_map.new_child(): Lookup hierarchy. """
+def chainmap_hierarchy():
+    """ obj.parents(), obj.new_child(): Lookup hierarchy. """
 
     map_one = {1: 0}
     map_two = {99: "Link"}
@@ -44,7 +44,7 @@ def counter():
 
 
 def counter_most_common():
-    """ counter.most_common(): Most common items, with nb occurences. """
+    """ obj.most_common(): Most common items, with nb occurences. """
 
     occurences = collections.Counter("Luigi")
     item, nb_occurences = occurences.most_common(1)[0]
@@ -52,13 +52,13 @@ def counter_most_common():
 
 
 def counter_elements():
-    """ counter.elements(): Generate all items with the required repetitions. """
+    """ obj.elements(): Generate all items with the required repetitions. """
 
     return ''.join(collections.Counter(g=1, o=4).elements()).upper()
 
 
 def counter_subtract():
-    """ counter.subtract(...): Substract counts, c1 -= c2. """
+    """ obj.subtract(...): Substract counts, c1 -= c2. """
 
     occurences = collections.Counter("Kart race")
     occurences.subtract(collections.Counter("accidented Kirrrby"))
@@ -66,7 +66,7 @@ def counter_subtract():
 
 
 def counter_update():
-    """ counter.update(...): Add counts, c1 += c2. """
+    """ obj.update(...): Add counts, c1 += c2. """
 
     occurences = collections.Counter("shell")
     occurences.update(collections.Counter("lightning"))
@@ -99,7 +99,7 @@ def namedtuple():
 def namedtuple_make():
     """ cls._make(...): Create new instance from a tuple. """
 
-    kart_class = collections.namedtuple('Kartx', 'celerity size')
+    kart_class = collections.namedtuple('Kart', 'celerity size')
     rocket_kart = kart_class._make((1000, 'small'))
     return "{} km/h is faaast!!".format(rocket_kart.celerity)
 
@@ -141,41 +141,141 @@ def namedtuple_fields():
 # category: deque
 
 
-def _():
-    """ """
+def deque():
+    """ deque(...): List-like double edged queue. """
+
+    power_ups = collections.deque(('star', 'lightning'))
+    return "there are {} power ups".format(len(power_ups))
+
+
+def deque_append():
+    """ obj.append(...), obj.appendleft(...): Add element. """
+
+    power_ups = collections.deque(('star', 'lightning'))
+    power_ups.append('green-shell')
+    power_ups.appendleft('red-shell')
+    return "available power ups are {}".format(', '.join(power_ups))
+
+
+def deque_extend():
+    """ obj.extend(...), obj.extendleft(...): Add list of elements. """
+
+    power_ups = collections.deque(('star', 'lightning'))
+    power_ups.extend(('green-shell', 'rocket'))
+    power_ups.extendleft(['red-shell'])
+    return "extended power ups are {}".format(', '.join(power_ups))
+
+
+def deque_pop():
+    """ obj.pop(...), obj.popleft(...): Pop an element. """
+
+    power_ups = collections.deque(('star', 'lightning', 'rocket'))
+    _ = power_ups.popleft()
+    _ = power_ups.pop()
+    return "remaining power ups is {}".format(', '.join(power_ups))
+
+
+def deque_rotate():
+    """ obj.rotate(...): Move the position of elements. """
+
+    power_ups = collections.deque(('star', 'lightning', 'rocket', 'banana'))
+    power_ups.rotate(2)
+    return "rotated power ups are {}".format(', '.join(power_ups))
 
 
 # category: ordered dictionary
 
 
-def _():
-    """ """
+def ordereddict():
+    """ OrderedDict(...): Sorted dictionary. """
+
+    pilots = {pilot: len(pilot) for pilot in 'Peach Bowser Toad'.split()}
+    ordered_pilots = collections.OrderedDict(sorted(
+        pilots.items(), key=lambda item: item[1]))
+    return "sorted pilot are {}".format(', '.join(
+        '{}#{}'.format(score, name) for name, score in ordered_pilots.items()))
+
+
+def ordereddict_popitem():
+    """ obj.popitem(...): Pop last or first item, default is last. """
+
+    pilots = {pilot: len(pilot) for pilot in 'Peach Bowser Toad'.split()}
+    ordered_pilots = collections.OrderedDict(pilots)
+    return "first pilot {} scores {}".format(
+        *ordered_pilots.popitem(last=False))  # by default: last=True
+
+
+def ordereddict_move_to_end():
+    """ obj.move_to_end(...): Modify the position of an item. """
+
+    pilots = {pilot: len(pilot) for pilot in 'Peach Bowser Toad'.split()}
+    ordered_pilots = collections.OrderedDict(pilots)
+    ordered_pilots.move_to_end('Toad', last=False)  # by default: last=True
+    return "new first pilot {} scores {}".format(
+        *next(iter(ordered_pilots.items())))
 
 
 # category: default dictionary
 
 
-def _():
-    """ """
+def defaultdict():
+    """ defaultdict(...): Dictionary with a value for missing keys. """
+
+    kart = collections.defaultdict(lambda: 'unknown')
+    kart['speed'] = 66
+    return "kart specs are {}".format(''.join(
+        '{} -> {}'.format(key, kart[key]) for key in ('speed', 'sound')))
 
 
-# category: user dictionary
+def defaultdict_default_factory():
+    """ obj.default_factory: Change default value factory method. """
+
+    kart = collections.defaultdict()
+    kart.default_factory = lambda: 'too high'
+    return "kart speed is {}".format(kart['speed'])
 
 
-def _():
-    """ """
+# category: user managed dictionary, list and string
 
 
-# category: user list
+def userdict():
+    """ Cls(UserDict): Managed dictionary. """
+
+    class Kart(collections.UserDict):
+        """ Custom kart. """
+        def __getitem__(self, key):
+            return '*{}*'.format(self.data[key])
+
+    kart = Kart()
+    kart['beauty'] = 'full'
+
+    return "this cart beauty is {}".format(kart['beauty'])
 
 
-def _():
-    """ """
+def userlist():
+    """ Cls(UserList): Managed lists. """
+
+    class Motors(collections.UserList):
+        """ Custom kart motors list. """
+        def __str__(self):
+            return 'Kart motors {}'.format(', '.join(self.data))
+
+    karts = Motors(('50 CC', '100 CC', '150 CC'))
+    return str(karts)
 
 
-# category: user string
+def userstring():
+    """ Cls(UserString): Managed string. """
 
+    class Pilot(collections.UserString):
+        """ Custom kart pilot name. """
+        def swap(self, new_pilot):
+            """ Carjack the kart. """
+            if not isinstance(new_pilot, str):
+                raise TypeError('new_pilot is not a str')
+            self.data = new_pilot
 
-def _():
-    """ """
+    pilot = Pilot('Toad')
+    pilot.swap('Donkey Kong')
+    return "pilot of the day is " + pilot
 
