@@ -1,4 +1,4 @@
-# pyhow
+# pyhow [![Build Status](https://travis-ci.org/yoeo/pyhow.svg?branch=master)](https://travis-ci.org/yoeo/pyhow)
 Learn python by playing with sample codes and become a guru... (one day in the far \_\_future\_\_)
 
 ## Description
@@ -8,32 +8,48 @@ You will find sample code for **built-in** functions classes, exceptions, obejct
 
 ### An example of output:
 ```
->>>  ITERTOOLS LIBRARY SAMPLES.
+>>>  TWEAK METACLASSES, CLASSES THAT GENERATES CLASSES. 
 
 
-COMBINATION
+1/3 CLASS CREATION
 
 
-  CHAIN: Merge multiple iteratiors.
+  INIT: mcs.__init__: Create a class as an instance.
     |
-    |  def chain():
-    |      chained = itertools.chain('BAG', 'DAD')
-    |      return ''.join(chained)
+    |  def init():
+    |      class Meta(type):
+    |          def __init__(cls, class_name, bases, namespace):
+    |              super().__init__(class_name, bases, namespace)
+    |              cls.value = "fullname is {}.{}[{}]".format(
+    |                  namespace['__module__'], class_name, ', '.join(
+    |                      base.__name__ for base in bases))
+    |      class ItemClass(int, metaclass=Meta):
+    |          pass
+    |      return ItemClass.value
     |
-    |-- chain() = 'BAGDAD'
+    |-- init() = 'fullname is pyhow.samples.impl.metaclasses.ItemClass[int]'
 
 
-  GROUPBY: Group sorted elements.
+  NEW: mcs.__new__: Create a class as an instance.
     |
-    |  def groupby():
-    |      def square(value):
-    |          return  value**2
-    |      sorted_items = sorted(range(-2, 3), key=square)
-    |      grouped = itertools.groupby(sorted_items, key=square)
-    |      return dict((key, list(values)) for key, values in grouped)
+    |  def new():
+    |      class Meta(type):
+    |          def __new__(mcs, class_name, bases, namespace, **_):
+    |              bases = tuple([type(...)] + list(bases))
+    |              cls = type.__new__(mcs, class_name, bases, namespace)
+    |              return cls
+    |          @staticmethod
+    |          def __prepare__(*_, **kw):
+    |              return kw.copy()
+    |          def __init__(cls, *args, some_argument=None):
+    |              super().__init__(*args)
+    |              cls.some_attribute = some_argument
+    |      class ItemClass(int, metaclass=Meta, some_argument=...):
+    |          pass
+    |      return "modified baseclasses are [{}]".format(
+    |          ', '.join(base.__name__ for base in ItemClass.__bases__))
     |
-    |-- groupby() = {0: [0], 1: [-1, 1], 4: [-2, 2]}
-
+    |-- new() = 'modified baseclasses are [ellipsis, int]'
 ```
 
 ## How to use it?
@@ -46,32 +62,44 @@ You can install **pyhow** on your system or virtualenv:
 python setup.py install
 ```
 
-###Run
+###Exemple
+For exemple, to show Python regular expression samples
+```
+pyhow syntax.regex
+```
+
+###Help
 Usage
 ```
 pyhow <sample-name>
 ```
-For exemple, to show the string formating samples
-```
-pyhow string_format
-```
 Help and available samples
 ```
 usage: pyhow [-h]
-             {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,lib_re,lib_tempfile,regular_expressions,string_format}
+             {builtin.exceptions,builtin.objects,builtin.warnings,impl.async,impl.classes,impl.convertibles,impl.functions,impl.iterables,impl.metaclasses,impl.operators,impl.serializables,lib.collections,lib.functools,lib.itertools,lib.re,lib.tempfile,syntax.regex,syntax.str_format}
 
 Select one of the following samples:
-  builtin_exceptions : built-in exceptions samples.
-  builtin_objects    : built-in values and types samples.
-  lib_functools      : functools library samples.
-  lib_itertools      : itertools library samples.
-  lib_re             : re library samples.
-  lib_tempfile       : tempfile library samples.
-  regular_expressions: regular expressions language samples.
-  string_format      : string formating language samples.
+  builtin.exceptions: generate and catch built-in exceptions.
+  builtin.objects   : use and abuse python built-in objects, functions and classes.
+  builtin.warnings  : trigger and handle built-in warnings.
+  impl.async        : handle asynchronious operations.
+  impl.classes      : play with class and object implementations.
+  impl.convertibles : handle items conversion and value extraction.
+  impl.functions    : create function-like objects.
+  impl.iterables    : sequences implementation, create kind of iterators, lists, maps...
+  impl.metaclasses  : tweak metaclasses, classes that generates classes.
+  impl.operators    : implementation of python operators.
+  impl.serializables: custom methods to copy, serialize and unserialize items.
+  lib.collections   : collections library: tools to manage sequence of items.
+  lib.functools     : functools library: compose functions.
+  lib.itertools     : itertools library: create, mix and extract data from iterators.
+  lib.re            : re library: extract information from text with regular expressions.
+  lib.tempfile      : tempfile library: work with temporary files and directories.
+  syntax.regex      : regular expressions language samples.
+  syntax.str_format : string formating language samples.
 
 positional arguments:
-  {builtin_exceptions,builtin_objects,lib_functools,lib_itertools,lib_re,lib_tempfile,regular_expressions,string_format}
+  {builtin.exceptions,builtin.objects,builtin.warnings,impl.async,impl.classes,impl.convertibles,impl.functions,impl.iterables,impl.metaclasses,impl.operators,impl.serializables,lib.collections,lib.functools,lib.itertools,lib.re,lib.tempfile,syntax.regex,syntax.str_format}
 
 optional arguments:
   -h, --help            show this help message and exit
