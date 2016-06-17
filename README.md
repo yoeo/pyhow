@@ -7,7 +7,7 @@ Learn python by playing with sample codes and become a guru... (one day in the f
 You will find sample code for **built-in** functions classes, exceptions, obejcts and for some modules like **itertools**, **functools** etc...
 
 ### An example of output:
-![screen capture](screencap.png)
+![screen capture](screen.png)
 
 ## How to use it?
 ### Requirements
