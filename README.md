@@ -7,50 +7,7 @@ Learn python by playing with sample codes and become a guru... (one day in the f
 You will find sample code for **built-in** functions classes, exceptions, obejcts and for some modules like **itertools**, **functools** etc...
 
 ### An example of output:
-```
->>>  TWEAK METACLASSES, CLASSES THAT GENERATES CLASSES. 
-
-
-1/3 CLASS CREATION
-
-
-  INIT: mcs.__init__: Create a class as an instance.
-    |
-    |  def init():
-    |      class Meta(type):
-    |          def __init__(cls, class_name, bases, namespace):
-    |              super().__init__(class_name, bases, namespace)
-    |              cls.value = "fullname is {}.{}[{}]".format(
-    |                  namespace['__module__'], class_name, ', '.join(
-    |                      base.__name__ for base in bases))
-    |      class ItemClass(int, metaclass=Meta):
-    |          pass
-    |      return ItemClass.value
-    |
-    |-- init() = 'fullname is pyhow.samples.impl.metaclasses.ItemClass[int]'
-
-
-  NEW: mcs.__new__: Create a class as an instance.
-    |
-    |  def new():
-    |      class Meta(type):
-    |          def __new__(mcs, class_name, bases, namespace, **_):
-    |              bases = tuple([type(...)] + list(bases))
-    |              cls = type.__new__(mcs, class_name, bases, namespace)
-    |              return cls
-    |          @staticmethod
-    |          def __prepare__(*_, **kw):
-    |              return kw.copy()
-    |          def __init__(cls, *args, some_argument=None):
-    |              super().__init__(*args)
-    |              cls.some_attribute = some_argument
-    |      class ItemClass(int, metaclass=Meta, some_argument=...):
-    |          pass
-    |      return "modified baseclasses are [{}]".format(
-    |          ', '.join(base.__name__ for base in ItemClass.__bases__))
-    |
-    |-- new() = 'modified baseclasses are [ellipsis, int]'
-```
+![screen capture](screencap.png)
 
 ## How to use it?
 ### Requirements
