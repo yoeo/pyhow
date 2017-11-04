@@ -15,4 +15,3 @@ setup(
     test_suite="tests",
     scripts=['bin/pyhow'],
 )
-
