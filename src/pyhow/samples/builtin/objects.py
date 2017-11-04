@@ -1,4 +1,4 @@
-""" Use and abuse Python built-in objects, functions and classes. """
+"""Use and abuse Python built-in objects, functions and classes."""
 
 # ignore some coding flaws
 # pylint: disable=bad-builtin
@@ -19,26 +19,26 @@ import types
 
 
 def ellipsis():
-    """ Ellipsys: 3 dots for user defined syntax. """
+    """Ellipsys: 3 dots for user defined syntax."""
 
     return ...
 
 
 def false():
-    """ False: Not true. """
+    """False: Not true."""
 
     return bool(0)
 
 
 def none():
-    """ None: Null value. """
+    """None: Null value."""
 
 
 def not_implemented():
-    """ NotImplemented: Used for partial comparison implementation. """
+    """NotImplemented: Used for partial comparison implementation."""
 
     class HugeValue:
-        """ Huge integer. """
+        """Huge integer."""
         def __gt__(self, other):
             if isinstance(other, int):
                 return True
@@ -54,7 +54,7 @@ def not_implemented():
 
 
 def true():
-    """ True: Not false. """
+    """True: Not false."""
 
     return bool(...)
 
@@ -63,13 +63,13 @@ def true():
 
 
 def bool_builtin():
-    """ bool: Immutable boolean value. """
+    """bool: Immutable boolean value."""
 
     return bool([{}]) and "braces"
 
 
 def bytearray_builtin():
-    """ bytearray: Mutable bytes array. """
+    """bytearray: Mutable bytes array."""
 
     data = bytearray(b"plain\0ext")
     data[5] = ord('t')
@@ -77,45 +77,45 @@ def bytearray_builtin():
 
 
 def byte_builtin():
-    """ byte: Immutable bytes array. """
+    """byte: Immutable bytes array."""
 
     return bytes("\xd0\xd2NUT", "utf-8").decode()
 
 
 def complex_builtin():
-    """ complex: Immutable complex numbers. """
+    """complex: Immutable complex numbers."""
 
     number = complex(1, 2) + 1j
     return number * number.conjugate()
 
 
 def dict_builtin():
-    """ dict: Mutable hash maps. """
+    """dict: Mutable hash maps."""
 
     return dict(dog='bark', fox='???')['dog']
 
 
 def float_builtin():
-    """ float: Immutable floating point numbers. """
+    """float: Immutable floating point numbers."""
 
     return float('inf')
 
 
 def frozenset_builtin():
-    """ frozenset: Immutable items set. """
+    """frozenset: Immutable items set."""
 
     return "{}!".format(
         ''.join(frozenset('here').union('rare').intersection('hats')).upper())
 
 
 def int_builtin():
-    """ int: Immutable natural numbers. """
+    """int: Immutable natural numbers."""
 
     return int('1011', 2)
 
 
 def list_builtin():
-    """ list: Mutable items list. """
+    """list: Mutable items list."""
 
     items = list(range(10))
     items.insert(-1, 101)
@@ -124,7 +124,7 @@ def list_builtin():
 
 
 def memoryview_builtin():
-    """ memoryview: Immutable access to buffers, no copy. """
+    """memoryview: Immutable access to buffers, no copy."""
 
     big_data = b'karma' * 2
     choices = ("yin", "yang")
@@ -140,7 +140,7 @@ def memoryview_builtin():
 
 
 def set_builtin():
-    """ set: Mutable items set. """
+    """set: Mutable items set."""
 
     items = set(abs(value) for value in range(-3, 4))
     items.difference_update([0])
@@ -148,13 +148,13 @@ def set_builtin():
 
 
 def str_builtin():
-    """ str: Immutable strings. """
+    """str: Immutable strings."""
 
     return str(b"you are my prot\xe9g\xe9", 'latin-1')
 
 
 def tuple_builtin():
-    """ tuple: Immutable items sequence. """
+    """tuple: Immutable items sequence."""
 
     return tuple('Lucky Luke'.split())[-1]
 
@@ -163,101 +163,101 @@ def tuple_builtin():
 
 
 def all_builtin():
-    """ all: Check if all elements are true. """
+    """all: Check if all elements are true."""
 
     return all('ready') and "already"
 
 
 def any_builtin():
-    """ any: Check if at least one element is true. """
+    """any: Check if at least one element is true."""
 
     return any((None, False, 0, [], {}, tuple(), ...)) and "which one is true?"
 
 
 def enumerate_builtin():
-    """ enumerate: Build a list of position-value tuples. """
+    """enumerate: Build a list of position-value tuples."""
 
     return ', '.join(
         "{} {}".format(i, value) for i, value in enumerate(('zero', 'one')))
 
 
 def filter_builtin():
-    """ filter: Filter items using a function. Prefer list comprehension. """
+    """filter: Filter items using a function. Prefer list comprehension."""
 
     return "{}ged top secret".format(
         ''.join(filter(lambda info: info not in 'open', "pentagone")))
 
 
 def iter_builtin():
-    """ iter: Create an iterator for a sequence. """
+    """iter: Create an iterator for a sequence."""
 
     return next(iter("Love and War".split()))
 
 
 def len_builtin():
-    """ len: Number of elements of a sequence. """
+    """len: Number of elements of a sequence."""
 
     return len(str(...)) > 3 and "more than tree dots..."
 
 
 def map_builtin():
-    """ map: Apply a method to iterable items. Prefer list comprehension. """
+    """map: Apply a method to iterable items. Prefer list comprehension."""
 
     return ''.join(map(lambda value: chr(ord(value)-1), "tfdsfu\x21dpef"))
 
 
 def max_builtin():
-    """ map: Max element of an iterable. """
+    """map: Max element of an iterable."""
 
     return "Ma{}".format(max("Madmax"))
 
 
 def min_buildin():
-    """ min: Min element of an iterable. """
+    """min: Min element of an iterable."""
 
     return "{}innie".format(min("Mouse"))
 
 
 def next_buildtin():
-    """ next: Next element of an iterator. """
+    """next: Next element of an iterator."""
 
     return ''.join(next(zip("force", "laser", "energy", "xmen")))
 
 
 def range_builtin():
-    """ range: Generate integers. """
+    """range: Generate integers."""
 
     return "{} fire!".format(
         ', '.join(str(value) for value in range(3, 0, -1)))
 
 
 def reversed_builtin():
-    """ reversed: Reverse a sequence. """
+    """reversed: Reverse a sequence."""
 
     return ''.join(reversed("devreser"))
 
 
 def slice_builtin():
-    """ slice: Build a slicer to select items into a sequence. """
+    """slice: Build a slicer to select items into a sequence."""
 
     return "ABRACADABRA!!!"[slice(0, 20, 5)]
 
 
 def sorted_builtin():
-    """ sorted: Sort a sequence. """
+    """sorted: Sort a sequence."""
 
     return ''.join(sorted('noW', key=lambda char: char.lower(), reverse=True))
 
 
 def sum_builtin():
-    """ sum: Sum items. """
+    """sum: Sum items."""
 
     return "evens {}".format(
         ', '.join(str(value) for value in sum(([4], [6]), [2])))
 
 
 def zip_builtin():
-    """ zip: Merge elements of different iterables. """
+    """zip: Merge elements of different iterables."""
 
     return ''.join(first + second for first, second in zip("Jh o", "onDe"))
 
@@ -266,71 +266,71 @@ def zip_builtin():
 
 
 def abs_builtin():
-    """ abs: Absolute value. """
+    """abs: Absolute value."""
 
     return "{} faces".format(abs(~1))
 
 
 def ascii_builtin():
-    """ ascii: Ascii representation of an object. """
+    """ascii: Ascii representation of an object."""
 
     return ascii("eìuted")
 
 
 def bin_builtin():
-    """ bin: Binary representation of an integer. """
+    """bin: Binary representation of an integer."""
 
     return bin(8-1)[2:].replace('1', '6')
 
 
 def callable_builtin():
-    """ callable: Check if an object is callable. """
+    """callable: Check if an object is callable."""
 
     def messenger():
-        """ Send a message. """
+        """Send a message."""
         return "Don't harm the messenger"
 
     return (callable(messenger) and messenger or (lambda: None))()
 
 
 def chr_builtin():
-    """ chr: Integer to corresponding unicode character. """
+    """chr: Integer to corresponding unicode character."""
 
     return "mister " + chr(0x58)
 
 
 def dir_builtin():
-    """ dir: List attribute names of an object. """
+    """dir: List attribute names of an object."""
 
     return "{}ine".format(''.join(name for name in dir(2) if 'ag' in name))
 
 
 def divmod_builtin():
-    """ divmod: Integer division and modulo results. """
+    """divmod: Integer division and modulo results."""
 
     return "{}{} is the answer".format(*divmod(129, 20))
 
 
 def format_builtin():
-    """ format: Formated representation of an object. """
+    """format: Formated representation of an object."""
 
     return "{} ready".format(format(1, '.0%'))
 
 
 def hash_builtin():
-    """ hash: Hashed integer value of an object. """
+    """hash: Hashed integer value of an object."""
 
     return "{} tag".format(hash('#'))
 
 
 def hex_builtin():
-    """ hex: Hexadecimal representation on an integer. """
+    """hex: Hexadecimal representation on an integer."""
 
     return "R{}nne".format(hex(10))
 
 
 def id_builtin():
-    """ id: Get the unique ID of an object. """
+    """id: Get the unique ID of an object."""
 
     empty_first = {}
     empty_second = {}
@@ -338,13 +338,13 @@ def id_builtin():
 
 
 def oct_builtin():
-    """ oct: Octodecimal representation of an integer. """
+    """oct: Octodecimal representation of an integer."""
 
     return "fish ~({})~".format(oct(0))
 
 
 def open_builtin():
-    """ open: Open a file. """
+    """open: Open a file."""
 
     with tempfile.TemporaryFile() as data_file:
         data_file.write(b"read/write")
@@ -354,13 +354,13 @@ def open_builtin():
 
 
 def pow_builtin():
-    """ pow: Power of number. Can be modulated with a value. """
+    """pow: Power of number. Can be modulated with a value."""
 
     return "difference between 1KiB and 1KB is {}".format(pow(2, 10, 1000))
 
 
 def round_builtin():
-    """ round: Round a number to a given precision. """
+    """round: Round a number to a given precision."""
 
     return "short pi {}".format(round(3.1415, 2))
 
@@ -369,22 +369,22 @@ def round_builtin():
 
 
 def classmethod_builtin():
-    """ @classmethod: Decorator to define class methods. """
+    """@classmethod: Decorator to define class methods."""
 
     class Words:
-        """ Handle words. """
+        """Handle words."""
         separator = '★'
 
         @classmethod
         def unite(cls, *split_words):
-            """ Unite words. """
+            """Unite words."""
             return cls.separator.join(split_words)
 
     return Words.unite("black", "star")
 
 
 def delattr_builtin():
-    """ delattr: Delete an attribute from an object. """
+    """delattr: Delete an attribute from an object."""
 
     suv = types.new_class('Car')()
     suv.gear = 1
@@ -396,16 +396,16 @@ def delattr_builtin():
 
 
 def getattr_builtin():
-    """ getattr: Get an object attribute. """
+    """getattr: Get an object attribute."""
 
     return getattr(["pop up"], 'pop')()
 
 
 def globals_builtin():
-    """ globals: Access global variables. """
+    """globals: Access global variables."""
 
     def inject_global():
-        """ Inject a variable into global space. """
+        """Inject a variable into global space."""
         globals()['injected_gobal'] = "injected"
 
     inject_global()
@@ -413,19 +413,19 @@ def globals_builtin():
 
 
 def hasattr_builtin():
-    """ hasattr: Check if an object has a specified attribute. """
+    """hasattr: Check if an object has a specified attribute."""
 
     return "how can false be real?" if hasattr(False, 'real') else None
 
 
 def isinstance_builtin():
-    """ isinstance: Check if an object is an instance of a type. """
+    """isinstance: Check if an object is an instance of a type."""
 
     return isinstance([], list) and "whitelisted"
 
 
 def issubclass_builtin():
-    """ issubclass: Check if a class is a subclass of an other one. """
+    """issubclass: Check if a class is a subclass of an other one."""
 
     return (
         issubclass(type(all), object)
@@ -433,30 +433,30 @@ def issubclass_builtin():
 
 
 def locals_builtin():
-    """ locals: Access local variables. """
+    """locals: Access local variables."""
 
     dynamite = "Kaboom!!!"
     return locals()['dynamite']
 
 
 def property_builtin():
-    """ property: Define getter setter and deleter for an attribute. """
+    """property: Define getter setter and deleter for an attribute."""
 
     cars_horsepower = {}
 
     def get_power(car):
-        """ Get car horsepower. """
+        """Get car horsepower."""
         if id(car) not in cars_horsepower:
             raise AttributeError('ask me later')
         return cars_horsepower[id(car)]
 
     def set_power(car, horsepower):
-        """ Set car horsepower. """
+        """Set car horsepower."""
         cars_horsepower[id(car)] = (
             'goku power' if horsepower > 9000 else horsepower)
 
     def del_power(car):
-        """ Delete car horsepower. """
+        """Delete car horsepower."""
         del cars_horsepower[id(car)]
 
     car_class = types.new_class('Car')
@@ -468,13 +468,13 @@ def property_builtin():
 
 
 def repr_builtin():
-    """ repr: Representation of an object. """
+    """repr: Representation of an object."""
 
     return repr(...)
 
 
 def setattr_builtin():
-    """ setattr: Set an object attribute. """
+    """setattr: Set an object attribute."""
 
     cabriolet = types.new_class('Car')()
     setattr(cabriolet, 'roof', False)
@@ -482,14 +482,14 @@ def setattr_builtin():
 
 
 def staticmethod_builtin():
-    """ @staticmethod: Decorator to define class methods. """
+    """@staticmethod: Decorator to define class methods."""
 
     class Words:
-        """ Manage words. """
+        """Manage words."""
 
         @staticmethod
         def last(phrase, separator):
-            """ Get last words. """
+            """Get last words."""
 
             return phrase.split(separator)[-1].strip()
 
@@ -497,7 +497,7 @@ def staticmethod_builtin():
 
 
 def super_builtin():
-    """ super: Access base classes methods. """
+    """super: Access base classes methods."""
 
     # super() rules:
     # 1/ the method exists in all classes
@@ -505,18 +505,18 @@ def super_builtin():
     # 3/ each occurence uses super()
 
     class Meal:
-        """ A meal. """
+        """A meal."""
 
         def cook(self):
-            """ Cook a meal. """
+            """Cook a meal."""
 
             return "cooked {}".format(id(self))
 
     class Ramen(Meal):
-        """ Some ramen. """
+        """Some ramen."""
 
         def cook(self):
-            """ Cook some ramen. """
+            """Cook some ramen."""
 
             return super().cook()
 
@@ -524,14 +524,14 @@ def super_builtin():
 
 
 def type_builtin():
-    """ type: Find objects type, make new types. """
+    """type: Find objects type, make new types."""
 
     make_neo_int = type('NeoInt', (type(2),), {})
     return "friday {}".format(make_neo_int(13))
 
 
 def vars_builtin():
-    """ vars: Local variables or object attributes if obj.__dict__ exists. """
+    """vars: Local variables or object attributes if obj.__dict__ exists."""
 
     return "{} wolf".format(
         locals() == vars()
@@ -542,21 +542,21 @@ def vars_builtin():
 
 
 def compile_builtin():
-    """ compile: Compile source code to bytecode. """
+    """compile: Compile source code to bytecode."""
 
     bytecode = compile("'Sodom' or 'Gomorrah'", '/fake/sourcefile.py', 'eval')
     return eval(bytecode)
 
 
 def eval_builtin():
-    """ eval: Evaluate an expression and return the result. """
+    """eval: Evaluate an expression and return the result."""
 
     luffy = True
     return eval('"one piece" if luffy else "teletubbies"')
 
 
 def exec_builtin():
-    """ exec: Execute source code. """
+    """exec: Execute source code."""
 
     exec('global new_global; new_global = "created on the fly"')
     return new_global
@@ -566,25 +566,25 @@ def exec_builtin():
 
 
 def build_class():
-    """ __build_class__: Low level class maker. Prefer types.new_class(...). """
+    """__build_class__: Low level class maker. Prefer types.new_class(...)."""
 
     return __build_class__(lambda: None, 'NiceClass')().__class__.__name__
 
 
 def copyright_builtin():
-    """ copyright: Python copyright. """
+    """copyright: Python copyright."""
 
     return str(copyright).splitlines()[0]
 
 
 def credits_builtin():
-    """ credits: Python development credit. """
+    """credits: Python development credit."""
 
     return str(credits).split('. ')[-1].lstrip()
 
 
 def debug():
-    """ __debug__: Interpreter in debug mode. Default is True. """
+    """__debug__: Interpreter in debug mode. Default is True."""
 
     # set __debug__ false to deactivate asserts:
     # $ python -O
@@ -592,7 +592,7 @@ def debug():
 
 
 def exit_builtin():
-    """ exit: Exit from interpreter. Prefer sys.exit(...). """
+    """exit: Exit from interpreter. Prefer sys.exit(...)."""
 
     sys.stdin = None
     try:
@@ -605,20 +605,20 @@ def exit_builtin():
 
 
 def help_builtin():
-    """ help: View the doc of an object. """
+    """help: View the doc of an object."""
 
     # ex: help(help)
     return help.__class__.__name__
 
 
 def import_builtin():
-    """ __import__: Interpreter import. Prefer importlib.import_module(...). """
+    """__import__: Interpreter import. Prefer importlib.import_module(...)."""
 
     return __import__('sys').platform
 
 
 def input_builtin():
-    """ input: Retrieve data from the user. """
+    """input: Retrieve data from the user."""
 
     with io.StringIO() as fake_input:
         fake_input.write("slim shady")
@@ -632,25 +632,25 @@ def input_builtin():
 
 
 def loader():
-    """ __loader__: Packages loader. """
+    """__loader__: Packages loader."""
 
     return "I'm a {}".format(__loader__.__doc__.splitlines()[0].lower())
 
 
 def name():
-    """ __name__: Current module name. """
+    """__name__: Current module name."""
 
     return __name__
 
 
 def package():
-    """ __package__: Current package name. """
+    """__package__: Current package name."""
 
     return __package__
 
 
 def print_builtin():
-    """ print: Print an object on the standard input. """
+    """print: Print an object on the standard input."""
 
     with io.StringIO() as fake_output:
 
@@ -661,7 +661,7 @@ def print_builtin():
 
 
 def quit_builtin():
-    """ quit: Exit from interpreter. Prefer sys.exit(...). """
+    """quit: Exit from interpreter. Prefer sys.exit(...)."""
 
     sys.stdin = None
     try:
@@ -674,6 +674,6 @@ def quit_builtin():
 
 
 def spec():
-    """ __spec__: Information used to load the module. """
+    """__spec__: Information used to load the module."""
 
     return os.path.basename(__spec__.origin)

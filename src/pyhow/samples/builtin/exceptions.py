@@ -1,4 +1,4 @@
-""" Generate and catch built-in exceptions. """
+"""Generate and catch built-in exceptions."""
 
 # ignore some coding flaws
 # pylint: disable=broad-except
@@ -27,7 +27,7 @@ import weakref
 
 
 def arithmetic_error():
-    """ Basic math error. """
+    """Basic math error."""
     try:
         1 / 0
     except ArithmeticError:
@@ -35,7 +35,7 @@ def arithmetic_error():
 
 
 def floating_point_error():
-    """ Floating point operation error. """
+    """Floating point operation error."""
     try:
         # When SIGFPE is enabled:
         # $ python -c "import fpectl; fpectl.turnonsigfpe(); 1.0 / 0"
@@ -45,11 +45,11 @@ def floating_point_error():
 
 
 def generator_exit():
-    """ Exiting a generetor. """
+    """Exiting a generetor."""
     result = None
 
     def make_generator():
-        """ Custom generator. """
+        """Custom generator."""
         try:
             yield
         except GeneratorExit:
@@ -63,7 +63,7 @@ def generator_exit():
 
 
 def index_error():
-    """ Indexed element not in sequence. """
+    """Indexed element not in sequence."""
     try:
         [][0]
     except IndexError:
@@ -71,7 +71,7 @@ def index_error():
 
 
 def key_error():
-    """ Indexed element not in map. """
+    """Indexed element not in map."""
     try:
         {}[0]
     except KeyError:
@@ -79,10 +79,10 @@ def key_error():
 
 
 def reference_error():
-    """ Accessing unreferenced object. """
+    """Accessing unreferenced object."""
 
     def do_nothing():
-        """ Empty function. """
+        """Empty function."""
         pass
 
     proxy = weakref.proxy(do_nothing)
@@ -94,7 +94,7 @@ def reference_error():
 
 
 def stop_iteration():
-    """ End of iterations. """
+    """End of iterations."""
     try:
         next(iter([]))
     except StopIteration:
@@ -102,7 +102,7 @@ def stop_iteration():
 
 
 def type_error():
-    """ Using the wrong type of object. """
+    """Using the wrong type of object."""
     try:
         next((1, 2))
     except TypeError:
@@ -110,7 +110,7 @@ def type_error():
 
 
 def unicode_decode_error():
-    """ Failed to decode sequence to unicode. """
+    """Failed to decode sequence to unicode."""
     try:
         b'\x99'.decode()
     except UnicodeDecodeError:
@@ -118,7 +118,7 @@ def unicode_decode_error():
 
 
 def unicode_encode_error():
-    """ Failed to encode unicode string. """
+    """Failed to encode unicode string."""
     try:
         '€'.encode('ascii')
     except UnicodeEncodeError:
@@ -126,7 +126,7 @@ def unicode_encode_error():
 
 
 def unicode_error():
-    """ Failed to encode from / decode to unicode string. """
+    """Failed to encode from / decode to unicode string."""
     try:
         'é'.encode('latin-1').decode('ascii')
     except UnicodeError:
@@ -134,7 +134,7 @@ def unicode_error():
 
 
 def unicode_translate_error():
-    """ Failed to translate unicode string. """
+    """Failed to translate unicode string."""
     try:
         # just throwing the exception...
         raise UnicodeTranslateError('\x99', 1, 2, 'Unknown char')
@@ -143,7 +143,7 @@ def unicode_translate_error():
 
 
 def value_error():
-    """ Bad value. """
+    """Bad value."""
     try:
         _, _ = range(1)
     except ValueError:
@@ -151,7 +151,7 @@ def value_error():
 
 
 def zero_division_error():
-    """ Dividing by zero. """
+    """Dividing by zero."""
     try:
         0 / 0
     except ZeroDivisionError:
@@ -162,7 +162,7 @@ def zero_division_error():
 
 
 def blocking_io_error():
-    """ Blocking I/O operation failed. """
+    """Blocking I/O operation failed."""
     # broken in versions < 3.4.3 see http://python.org/sf/13322
     try:
         raise BlockingIOError()
@@ -171,7 +171,7 @@ def blocking_io_error():
 
 
 def broken_pipe_error():
-    """ Broken pipe. """
+    """Broken pipe."""
     (pipe_end1, pipe_end2) = multiprocessing.Pipe()
     pipe_end1.send('txt')
     pipe_end2.recv()
@@ -184,7 +184,7 @@ def broken_pipe_error():
 
 
 def buffer_error():
-    """ Wrong usage of memory buffer. """
+    """Wrong usage of memory buffer."""
     array = bytearray([1, 3, 5])
     del array[-1]
     try:
@@ -196,7 +196,7 @@ def buffer_error():
 
 
 def connection_aborted_error():
-    """ Connection aborted by peer. """
+    """Connection aborted by peer."""
     try:
         # just throwing the exception...
         raise ConnectionAbortedError()
@@ -205,7 +205,7 @@ def connection_aborted_error():
 
 
 def connection_error():
-    """ Base of all connection errors. """
+    """Base of all connection errors."""
     try:
         socket.socket().connect(('localhost', 0))
     except ConnectionError:
@@ -213,7 +213,7 @@ def connection_error():
 
 
 def connection_refused():
-    """ Connection refused by peer. """
+    """Connection refused by peer."""
     try:
         socket.socket().connect(('localhost', 0))
     except ConnectionRefusedError:
@@ -221,7 +221,7 @@ def connection_refused():
 
 
 def connection_reset_error():
-    """ Connection reseted by peer. """
+    """Connection reseted by peer."""
     server = socket.socket()
     server.bind(('localhost', 19900))
     server.listen(0)
@@ -238,7 +238,7 @@ def connection_reset_error():
 
 
 def eof_error():
-    """ Reached end of file before loading all data. """
+    """Reached end of file before loading all data."""
     try:
         pickle.loads(pickle.dumps({})[:1])
     except EOFError:
@@ -249,7 +249,7 @@ def eof_error():
 
 
 def attribute_error():
-    """ Missing attribute. """
+    """Missing attribute."""
     try:
         None.anything
     except AttributeError:
@@ -257,7 +257,7 @@ def attribute_error():
 
 
 def import_error():
-    """ Importing inaccessible module. """
+    """Importing inaccessible module."""
     try:
         importlib.import_module('no_such_module')
     except ImportError:
@@ -265,7 +265,7 @@ def import_error():
 
 
 def indentation_error():
-    """ Bad indentation. """
+    """Bad indentation."""
     try:
         exec("None\n None")
     except IndentationError:
@@ -273,7 +273,7 @@ def indentation_error():
 
 
 def name_error():
-    """ Name not defined. """
+    """Name not defined."""
     try:
         no_name
     except NameError:
@@ -281,10 +281,10 @@ def name_error():
 
 
 def not_implemented_error():
-    """ Code not yet implemented. """
+    """Code not yet implemented."""
 
     def todo():
-        """ To implement one day. """
+        """To implement one day."""
         raise NotImplementedError()
 
     try:
@@ -294,7 +294,7 @@ def not_implemented_error():
 
 
 def syntax_error():
-    """ Wrong Python syntax. """
+    """Wrong Python syntax."""
     try:
         exec('if while')
     except SyntaxError:
@@ -302,7 +302,7 @@ def syntax_error():
 
 
 def tab_error():
-    """ Mixing tabs and spaces for indentation. """
+    """Mixing tabs and spaces for indentation."""
     try:
         exec('if True:\n pass\n\tpass')
     except TabError:
@@ -310,12 +310,12 @@ def tab_error():
 
 
 def unbound_local_error():
-    """ Wrong access to nonlocal variables. """
+    """Wrong access to nonlocal variables."""
     result = None
     first_level_variable = 1
 
     def second_level():
-        """ Encapsulated method. """
+        """Encapsulated method."""
         try:
             first_level_variable += 1
         except UnboundLocalError:
@@ -330,7 +330,7 @@ def unbound_local_error():
 
 
 def assertion_error():
-    """ Wrong assertion. """
+    """Wrong assertion."""
     try:
         assert True is False
     except AssertionError:
@@ -338,7 +338,7 @@ def assertion_error():
 
 
 def base_exception():
-    """ Base of all exceptions. """
+    """Base of all exceptions."""
     try:
         sys.exit(-1) or die
     except BaseException:
@@ -346,7 +346,7 @@ def base_exception():
 
 
 def child_process_error():
-    """ Unable to access child process. """
+    """Unable to access child process."""
     try:
         os.waitpid(0, os.WNOHANG)
     except ChildProcessError:
@@ -354,7 +354,7 @@ def child_process_error():
 
 
 def exception():
-    """ Base of all nonexit exceptions. """
+    """Base of all nonexit exceptions."""
     try:
         catch_me_if_you_can
     except Exception:
@@ -362,7 +362,7 @@ def exception():
 
 
 def interrupted_error():
-    """ Process interrupted by signal. """
+    """Process interrupted by signal."""
     try:
         # just throwing the exception...
         raise InterruptedError()
@@ -371,7 +371,7 @@ def interrupted_error():
 
 
 def keyborad_interrupt():
-    """ Process interrupted by exit signal. """
+    """Process interrupted by exit signal."""
     try:
         os.kill(os.getpid(), signal.SIGINT)
     except KeyboardInterrupt:
@@ -379,7 +379,7 @@ def keyborad_interrupt():
 
 
 def lookup_error():
-    """ Unable to find / load an item. """
+    """Unable to find / load an item."""
     try:
         codecs.getencoder('hieroglyphe')
     except LookupError:
@@ -387,7 +387,7 @@ def lookup_error():
 
 
 def memory_error():
-    """ Doesn't fit in memory. """
+    """Doesn't fit in memory."""
     char_list = ['a', 'b']
     try:
         while True:
@@ -400,7 +400,7 @@ def memory_error():
 
 
 def os_error():
-    """ Operating system error. AKA EnvironmentError / IOError. """
+    """Operating system error. AKA EnvironmentError / IOError."""
     try:
         smtplib.SMTP('localhost:a_port')
     except OSError:
@@ -408,7 +408,7 @@ def os_error():
 
 
 def overflow_error():
-    """ Value doesn't fit in object. """
+    """Value doesn't fit in object."""
     try:
         int(float('inf'))
     except OverflowError:
@@ -416,7 +416,7 @@ def overflow_error():
 
 
 def process_loockup_error():
-    """ Manipulating process that doesn't exist. """
+    """Manipulating process that doesn't exist."""
     try:
         os.kill(99999999, signal.SIGKILL)
     except ProcessLookupError:
@@ -424,7 +424,7 @@ def process_loockup_error():
 
 
 def runtime_error():
-    """ Error durring runtime. """
+    """Error durring runtime."""
     try:
         threading.Lock().release()
     except RuntimeError:
@@ -432,7 +432,7 @@ def runtime_error():
 
 
 def system_error():
-    """ Operating system or Python interpreter failure. """
+    """Operating system or Python interpreter failure."""
     try:
         with socket.socket() as handle:
             idlelib.rpc.SocketIO(handle).decoderesponse(('BAD', 'DATA'))
@@ -441,7 +441,7 @@ def system_error():
 
 
 def system_exit():
-    """ Stopping the program. """
+    """Stopping the program."""
     try:
         sys.exit(-1)
     except SystemExit:
@@ -449,7 +449,7 @@ def system_exit():
 
 
 def timeout_error():
-    """ Reched a timeout. """
+    """Reched a timeout."""
     try:
         # just throwing the exception...
         raise TimeoutError()
@@ -461,7 +461,7 @@ def timeout_error():
 
 
 def environment_error():
-    """ Base of all file system errors. AKA IOError / OSError. """
+    """Base of all file system errors. AKA IOError / OSError."""
     try:
         os.rmdir(tempfile.mktemp())
     except EnvironmentError:
@@ -469,7 +469,7 @@ def environment_error():
 
 
 def file_exists_error():
-    """ File already exists. """
+    """File already exists."""
     with tempfile.TemporaryDirectory() as dirname:
         try:
             os.mkdir(dirname)
@@ -478,7 +478,7 @@ def file_exists_error():
 
 
 def file_not_found_error():
-    """ File doesn't exist. """
+    """File doesn't exist."""
     try:
         os.remove(tempfile.mktemp())
     except FileNotFoundError:
@@ -486,7 +486,7 @@ def file_not_found_error():
 
 
 def io_error():
-    """ Base of all file system errors. AKA EnvironmentError / OSError. """
+    """Base of all file system errors. AKA EnvironmentError / OSError."""
     try:
         open(tempfile.mktemp(), 'r')
     except IOError:
@@ -494,7 +494,7 @@ def io_error():
 
 
 def is_a_directory_error():
-    """ Wrong usage of a directory. """
+    """Wrong usage of a directory."""
     with tempfile.TemporaryDirectory() as dirname:
         try:
             open(dirname, 'r')
@@ -503,7 +503,7 @@ def is_a_directory_error():
 
 
 def not_a_directory_error():
-    """ Try to use a nondirectory as a directory. """
+    """Try to use a nondirectory as a directory."""
     file_descriptor, filename = tempfile.mkstemp()
     os.close(file_descriptor)
     try:
@@ -515,7 +515,7 @@ def not_a_directory_error():
 
 
 def permission_error():
-    """ No permission to process a file or directory. """
+    """No permission to process a file or directory."""
     file_descriptor, filename = tempfile.mkstemp()
     os.close(file_descriptor)
     os.chmod(filename, 0o444)

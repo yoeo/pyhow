@@ -1,4 +1,4 @@
-""" tempfile library: Work with temporary files and directories. """
+"""tempfile library: Work with temporary files and directories."""
 
 import os
 import tempfile
@@ -8,13 +8,13 @@ import tempfile
 
 
 def mktemp():
-    """ Depreticated version of mkstemp. Prefer mkstemp. """
+    """Depreticated version of mkstemp. Prefer mkstemp."""
 
     return "forget me..."
 
 
 def mkstemp():
-    """ Unique temporary file. Not deleted on close. """
+    """Unique temporary file. Not deleted on close."""
 
     fileno, filename = tempfile.mkstemp()
     created = os.path.exists(filename)
@@ -25,15 +25,16 @@ def mkstemp():
 
 
 def named_temporary_file():
-    """ Unique temporary file. Delete on close. """
+    """Unique temporary file. Delete on close."""
 
-    with tempfile.NamedTemporaryFile(prefix='how_', suffix='.bin') as temp_file:
+    with tempfile.NamedTemporaryFile(
+            prefix='how_', suffix='.bin') as temp_file:
         created = os.path.exists(temp_file.name)
         return created and "filename {}".format(temp_file.name)
 
 
 def spooled_temporary_file():
-    """ Unique temporary file, data on disc or memory. Delete on close. """
+    """Unique temporary file, data on disc or memory. Delete on close."""
 
     max_size = 1234
     with tempfile.SpooledTemporaryFile(max_size=max_size) as temp_file:
@@ -49,7 +50,7 @@ def spooled_temporary_file():
 
 
 def temporary_file():
-    """ Unique anonymous temporary file. Delete on close. """
+    """Unique anonymous temporary file. Delete on close."""
 
     with tempfile.TemporaryFile() as temp_file:
         created = os.path.exists(temp_file.name)
@@ -60,19 +61,19 @@ def temporary_file():
 
 
 def gettempdir():
-    """ Temporary items root directory. """
+    """Temporary items root directory."""
 
     return "temp root is {}".format(tempfile.gettempdir())
 
 
 def gettempprefix():
-    """ Prefix of temporary directories and files. """
+    """Prefix of temporary directories and files."""
 
     return "prefix is {}".format(tempfile.gettempprefix())
 
 
 def mkdtemp():
-    """ Unique temporary directory. """
+    """Unique temporary directory."""
 
     dirname = tempfile.mkdtemp(prefix='how_', suffix='_tmp')
     created = os.path.exists(dirname)
@@ -82,7 +83,7 @@ def mkdtemp():
 
 
 def temporary_directory():
-    """ Unique temporary directory info. Delete on close. """
+    """Unique temporary directory info. Delete on close."""
 
     with tempfile.TemporaryDirectory(prefix='how_', suffix='_tmp') as dirname:
         created = os.path.exists(dirname)
@@ -90,7 +91,7 @@ def temporary_directory():
 
 
 def tempdir():
-    """ Set the temprary items root directory. """
+    """Set the temprary items root directory."""
 
     system_root = os.path.abspath(os.sep)
     old_tempdir = tempfile.gettempdir()
@@ -99,6 +100,6 @@ def tempdir():
     new_tempdir = os.path.abspath(os.path.dirname(tempfile.mktemp()))
     tempfile.tempdir = old_tempdir
 
-    return new_tempdir == system_root and "move temp root from {} to {}".format(
-        old_tempdir, new_tempdir)
-
+    return (
+        new_tempdir == system_root
+        and "move temp root from {} to {}".format(old_tempdir, new_tempdir))

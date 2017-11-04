@@ -1,4 +1,4 @@
-""" functools library: Compose functions. """
+"""functools library: Compose functions."""
 
 import functools
 
@@ -7,10 +7,10 @@ import functools
 
 
 def partial():
-    """ Set default parameters to an existing function. """
+    """Set default parameters to an existing function."""
 
     def phrase(subject, verb, comp=""):
-        """ Build a phrase with words. """
+        """Build a phrase with words."""
         return ' '.join((subject, verb, comp))
 
     robot_phrase = functools.partial(phrase, "robot", comp="bip bip")
@@ -18,21 +18,21 @@ def partial():
 
 
 def partialmethod():
-    """ Set default parameters to an existing class method. """
+    """Set default parameters to an existing class method."""
 
     class Multiplier:
-        """ Multiply numbers. """
+        """Multiply numbers."""
 
         def __init__(self, base):
             self._base = base
 
         @property
         def base(self):
-            """ Get the base number. """
+            """Get the base number."""
             return self._base
 
         def times(self, value):
-            """ Multiply with the base number. """
+            """Multiply with the base number."""
             return self._base * value
 
         times_2 = functools.partialmethod(times, 2)
@@ -45,11 +45,11 @@ def partialmethod():
 
 
 def lru_cache():
-    """ Cache functions results. """
+    """Cache functions results."""
 
     @functools.lru_cache()
     def say_hi(name):
-        """ Say Hi. """
+        """Say Hi."""
         return 'Hi {}'.format(name)
 
     names = ['John'] + ['Doe'] * 4
@@ -62,10 +62,10 @@ def lru_cache():
 
 
 def cmp_to_key():
-    """ Convert C style compare function to key function. """
+    """Convert C style compare function to key function."""
 
     def compare_sizes(list_a, list_b):
-        """ Old compare function. """
+        """Old compare function."""
         size_a, size_b = len(list_a), len(list_b)
         return 1 if size_a > size_b else -1 if size_a < size_b else 0
 
@@ -74,25 +74,25 @@ def cmp_to_key():
 
 
 def wraps():
-    """ Copy wrapped function information with a decorator. """
+    """Copy wrapped function information with a decorator."""
 
     def do_nothing(): "Doing nothing."
 
     @functools.wraps(do_nothing)
     def wrapper():
-        """ Wraps a function that does nothing. """
+        """Wraps a function that does nothing."""
         return do_nothing()
 
     return wrapper.__doc__.strip()
 
 
 def update_wrapper():
-    """ Copy wrapped function information. """
+    """Copy wrapped function information."""
 
     def do_nothing(): "Doing nothing."
 
     def wrapper():
-        """ Wraps a function that does nothing. """
+        """Wraps a function that does nothing."""
         return do_nothing()
 
     wrapper_alias = functools.update_wrapper(wrapper, do_nothing)
@@ -100,11 +100,11 @@ def update_wrapper():
 
 
 def total_ordering():
-    """ Automaticaly create all high-level ordering function for a class. """
+    """Automaticaly create all high-level ordering function for a class."""
 
     @functools.total_ordering
     class FakeInt:
-        """ Items comparables with integers. """
+        """Items comparables with integers."""
 
         def __init__(self, value):
             self._value = value
@@ -116,11 +116,11 @@ def total_ordering():
             return self._value == value
 
         def get_value(self):
-            """ Retrieve the value. """
+            """Retrieve the value."""
             return self._value
 
         def set_value(self, value):
-            """ Change the value. """
+            """Change the value."""
             self._value = value
 
     fake_2 = FakeInt(2)
@@ -128,16 +128,16 @@ def total_ordering():
 
 
 def singledispatch():
-    """ Create a C++ like template function. """
+    """Create a C++ like template function."""
 
     @functools.singledispatch
     def monkey_jump(height):
-        """ Jumping monkey. """
+        """Jumping monkey."""
         return 'monkey jumped {} meters'.format(height)
 
     @monkey_jump.register(list)
     def _(height):
-        """ Monkey jumping lists. """
+        """Monkey jumping lists."""
         return monkey_jump(len(height))
 
     return monkey_jump(list(range(10)))
@@ -147,8 +147,7 @@ def singledispatch():
 
 
 def reduce():
-    """ Apply recursively a function to an iterable. """
+    """Apply recursively a function to an iterable."""
 
     reverse = functools.reduce(lambda result, x: x + result, 'MooD')
     return reverse
-

@@ -1,4 +1,4 @@
-""" pyhow module
+"""pyhow module
 
 Print show Python sample codes.
 
@@ -42,7 +42,7 @@ _CODELINE_TEMPLATE = "    |  {codeline}"
 
 
 def make_samples():
-    """ Prepare sample modules. """
+    """Prepare sample modules."""
 
     root = 'pyhow.samples.'
     return {
@@ -53,17 +53,17 @@ def make_samples():
 
 
 def _bold(text):
-    """ Format a string in bold by overstriking. """
+    """Format a string in bold by overstriking."""
     return ''.join(ch + '\b' + ch for ch in text)
 
 
 def _underline(text):
-    """ Format a string by overstriking. """
+    """Format a string by overstriking."""
     return ''.join('_' + '\b' + ch for ch in text)
 
 
 def _extract_methods_info(module):
-    """ Extract methods data from a given python modules. """
+    """Extract methods data from a given python modules."""
 
     categories = [('uncategorized', -1)]
     categories += [
@@ -93,7 +93,7 @@ def _extract_methods_info(module):
 
 
 def show_sample(module):
-    """ Print sample modules. """
+    """Print sample modules."""
 
     methods_info = _extract_methods_info(module)
     methods_info = sorted(methods_info, key=lambda x: x['name'])
@@ -130,4 +130,3 @@ def show_sample(module):
             methods=methods_text)
 
     pydoc.getpager()(text)
-

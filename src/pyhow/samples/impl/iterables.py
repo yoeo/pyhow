@@ -1,4 +1,4 @@
-""" Sequences implementation, create kind of iterators, lists, maps... """
+"""Sequences implementation, create kind of iterators, lists, maps..."""
 
 # using unfinished example classes
 # pylint: disable=no-self-use
@@ -9,7 +9,7 @@
 
 
 def iter_method():
-    """ iter, for: Create an iterator for an iterable. """
+    """iter, for: Create an iterator for an iterable."""
 
     class _Iterable:
         def __iter__(self):
@@ -19,7 +19,7 @@ def iter_method():
 
 
 def len_method():
-    """ len: Get the number of items. """
+    """len: Get the number of items."""
 
     class _Iterable:
         def __len__(self):
@@ -29,7 +29,7 @@ def len_method():
 
 
 def contains_method():
-    """ in: Check if an item is in an iterable. """
+    """in: Check if an item is in an iterable."""
 
     class _Iterable:
         def __contains__(self, item):
@@ -39,11 +39,12 @@ def contains_method():
 
 
 def reversed_method():
-    """ reversed: Reverse a iterable. """
+    """reversed: Reverse a iterable."""
 
     class _Iterable:
         def __init__(self):
             self._sequence = ["Soca", "Zumba"]
+
         def __reversed__(self):
             return self._sequence[::-1]
 
@@ -54,11 +55,12 @@ def reversed_method():
 
 
 def next_method():
-    """ next, for: Get one item of an iterators. """
+    """next, for: Get one item of an iterators."""
 
     class _Iterator:
         def __init__(self):
             self._stop = False
+
         def __next__(self):
             if self._stop:
                 raise StopIteration()
@@ -72,7 +74,7 @@ def next_method():
 
 
 def index():
-    """ [...]: Use an item as a sequence index. """
+    """[...]: Use an item as a sequence index."""
 
     class _Index:
         def __index__(self):
@@ -82,13 +84,15 @@ def index():
 
 
 def delitem():
-    """ del: Delete an item from a sequence. """
+    """del: Delete an item from a sequence."""
 
     class _Indexable:
         def __init__(self):
             self._deleted = []
+
         def __delitem__(self, key):
             self._deleted.append(key)
+
         def __getitem__(self, key):
             if key in self._deleted:
                 raise KeyError()
@@ -103,7 +107,7 @@ def delitem():
 
 
 def getitem():
-    """ [...]: Get an item from a sequence. """
+    """[...]: Get an item from a sequence."""
 
     class _Indexable:
         def __getitem__(self, key):
@@ -115,7 +119,7 @@ def getitem():
 
 
 def missing():
-    """ [...]: Get a default item when the required item is not in dict. """
+    """[...]: Get a default item when the required item is not in dict."""
 
     # must be a subclass of dict
     class _Indexable(dict):
@@ -126,20 +130,21 @@ def missing():
 
 
 def setitem():
-    """ [...] =: Set a sequence item value. """
+    """[...] =: Set a sequence item value."""
 
     class _Indexable:
         def __init__(self):
             self._sequence = []
+
         def __getitem__(self, key):
             try:
                 return self._sequence[self._sequence.index(key)+1]
             except ValueError:
                 raise KeyError()
+
         def __setitem__(self, key, value):
             self._sequence += [key, value]
 
     singer = _Indexable()
     singer['type'] = "slam"
     return singer['type']
-

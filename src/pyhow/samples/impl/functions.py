@@ -1,4 +1,4 @@
-""" Create function-like objects. """
+"""Create function-like objects."""
 
 # using unfinished example classes
 # pylint: disable=eval-used
@@ -11,7 +11,7 @@
 
 
 def annotations():
-    """ func.__annotations__: Annotations for function parameters. """
+    """func.__annotations__: Annotations for function parameters."""
 
     def _function(value: int) -> float:
         return float(value)
@@ -22,7 +22,7 @@ def annotations():
 
 
 def call():
-    """ func(): "Call" an item as a function. """
+    """func(): "Call" an item as a function."""
 
     class _FunctionLike:
         def __call__(self, value):
@@ -32,10 +32,11 @@ def call():
 
 
 def closure():
-    """ func.__closure__: Variables trapped inside a function. """
+    """func.__closure__: Variables trapped inside a function."""
 
     def _wrapper():
         encapsulated = "dial tone"
+
         def _wrapped():
             nonlocal encapsulated
         return _wrapped
@@ -45,7 +46,7 @@ def closure():
 
 
 def code():
-    """ eval, exec: Access the bytecode of a function. """
+    """eval, exec: Access the bytecode of a function."""
 
     def _function():
         return "vibrating device"
@@ -54,7 +55,7 @@ def code():
 
 
 def defaults():
-    """ func.__defaults__: Default values of function parameters. """
+    """func.__defaults__: Default values of function parameters."""
 
     def _function(value="notification sound"):
         return value
@@ -63,7 +64,7 @@ def defaults():
 
 
 def doc():
-    """ func.__doc__, help(func): Docstring of a function. """
+    """func.__doc__, help(func): Docstring of a function."""
 
     def _function():
         " MIDI sheet music "
@@ -72,7 +73,7 @@ def doc():
 
 
 def kwdefaults():
-    """ func.__kwdefaults__: Default values of keyword only parameters. """
+    """func.__kwdefaults__: Default values of keyword only parameters."""
 
     def _function(*_, value="phone alarm"):
         return value
@@ -81,7 +82,7 @@ def kwdefaults():
 
 
 def name():
-    """ f.__name__: The short name of the function. """
+    """f.__name__: The short name of the function."""
 
     class _New:
         class _Message:
@@ -93,7 +94,7 @@ def name():
 
 
 def qualname():
-    """ func.__qualname__: The full name of the function. """
+    """func.__qualname__: The full name of the function."""
 
     class _New:
         class _EMail:
@@ -105,7 +106,7 @@ def qualname():
 
 
 def func():
-    """ obj.meth.__func__: The unbound version of an instance method. """
+    """obj.meth.__func__: The unbound version of an instance method."""
 
     class _ItemClass:
         def _function(self):
@@ -116,7 +117,7 @@ def func():
 
 
 def self_attribute():
-    """ obj.meth.__self__: Instance bounded to a method. """
+    """obj.meth.__self__: Instance bounded to a method."""
 
     class _ItemClass:
         def _function(self):
@@ -124,4 +125,3 @@ def self_attribute():
 
     item = _ItemClass()._function.__self__
     return item._function()
-

@@ -1,4 +1,4 @@
-""" Implementation of Python operators. """
+"""Implementation of Python operators."""
 
 # using unfinished example classes
 # pylint: disable=no-self-use
@@ -11,7 +11,7 @@ import math
 
 
 def eq_comparison():
-    """ ==: Equal operator. """
+    """==: Equal operator."""
 
     class _Comparable:
         def __eq__(self, other):
@@ -21,7 +21,7 @@ def eq_comparison():
 
 
 def ge_comparison():
-    """ >=: Greater or equal operator. """
+    """>=: Greater or equal operator."""
 
     class _Comparable:
         def __ge__(self, other):
@@ -31,7 +31,7 @@ def ge_comparison():
 
 
 def gt_comparison():
-    """ >: Greater than operator. """
+    """>: Greater than operator."""
 
     class _Comparable:
         def __gt__(self, other):
@@ -41,7 +41,7 @@ def gt_comparison():
 
 
 def le_comparison():
-    """ <=: Less than or equal operator. """
+    """<=: Less than or equal operator."""
 
     class _Comparable:
         def __le__(self, other):
@@ -51,8 +51,7 @@ def le_comparison():
 
 
 def lt_comparison():
-    """ <: Less than operator. """
-
+    """<: Less than operator."""
 
     class _Comparable:
         def __lt__(self, other):
@@ -62,7 +61,7 @@ def lt_comparison():
 
 
 def ne_comparison():
-    """ !=: Not equal operator. """
+    """!=: Not equal operator."""
 
     class _Comparable:
         def __ne__(self, other):
@@ -75,7 +74,7 @@ def ne_comparison():
 
 
 def invert_operator():
-    """ ~: Bitwise "not" operator. """
+    """~: Bitwise "not" operator."""
 
     class _Operand:
         def __invert__(self):
@@ -85,7 +84,7 @@ def invert_operator():
 
 
 def neg_operator():
-    """ -: Unary negation operator. """
+    """-: Unary negation operator."""
 
     class _Operand:
         def __neg__(self):
@@ -95,7 +94,7 @@ def neg_operator():
 
 
 def pos_operator():
-    """ +: Unary plus operator. """
+    """+: Unary plus operator."""
 
     class _Operand:
         def __pos__(self):
@@ -108,7 +107,7 @@ def pos_operator():
 
 
 def add_operator():
-    """ +: Addition operator. """
+    """+: Addition operator."""
 
     class _Operand:
         def __add__(self, other):
@@ -118,7 +117,7 @@ def add_operator():
 
 
 def and_operator():
-    """ &: Bitwise "and" operator. """
+    """&: Bitwise "and" operator."""
 
     class _Operand:
         def __and__(self, other):
@@ -128,7 +127,7 @@ def and_operator():
 
 
 def divmod_operator():
-    """ divmod(obj, other): Divison and modulo operator. """
+    """divmod(obj, other): Divison and modulo operator."""
 
     class _Operand:
         def __divmod__(self, other):
@@ -138,7 +137,7 @@ def divmod_operator():
 
 
 def floordiv_operator():
-    """ //: Division and floor operator. """
+    """//: Division and floor operator."""
 
     class _Operand:
         def __floordiv__(self, other):
@@ -148,7 +147,7 @@ def floordiv_operator():
 
 
 def lshift_operator():
-    """ <<: Shift left operator. """
+    """<<: Shift left operator."""
 
     class _Operand:
         def __lshift__(self, other):
@@ -158,7 +157,7 @@ def lshift_operator():
 
 
 def mod_operator():
-    """ %: Modulo operator. """
+    """%: Modulo operator."""
 
     class _Operand:
         def __mod__(self, other):
@@ -168,14 +167,14 @@ def mod_operator():
 
 
 def matmul_operator():
-    """ @: Matrice multiplication operator. """
+    """@: Matrice multiplication operator."""
 
     # TODO: @ operator, new in python 3.5
     return NotImplemented
 
 
 def mul_operator():
-    """ *: Multiplication operator. """
+    """*: Multiplication operator."""
 
     class _Operand:
         def __mul__(self, other):
@@ -185,7 +184,7 @@ def mul_operator():
 
 
 def or_operator():
-    """ |: Bitwise "or" operator. """
+    """|: Bitwise "or" operator."""
 
     class _Operand:
         def __or__(self, other):
@@ -195,7 +194,7 @@ def or_operator():
 
 
 def pow_operator():
-    """ **: Power operator. """
+    """**: Power operator."""
 
     class _Operand:
         def __pow__(self, other):
@@ -204,9 +203,8 @@ def pow_operator():
     return _Operand()**'electro'
 
 
-
 def rshift_operator():
-    """ >>: Shift right operator. """
+    """>>: Shift right operator."""
 
     class _Operand:
         def __rshift__(self, other):
@@ -216,7 +214,7 @@ def rshift_operator():
 
 
 def sub_operator():
-    """ -: Substraction operator. """
+    """-: Substraction operator."""
 
     class _Operand:
         def __sub__(self, other):
@@ -226,7 +224,7 @@ def sub_operator():
 
 
 def truediv_operator():
-    """ /: Division operator. """
+    """/: Division operator."""
 
     class _Operand:
         def __truediv__(self, other):
@@ -236,7 +234,7 @@ def truediv_operator():
 
 
 def xor_operator():
-    """ ^: Exclusive "or" operator. """
+    """^: Exclusive "or" operator."""
 
     class _Operand:
         def __xor__(self, other):
@@ -249,11 +247,12 @@ def xor_operator():
 
 
 def iadd():
-    """ +=: Inplace plus operator. """
+    """+=: Inplace plus operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __iadd__(self, other):
             self.value = " + ".join(('rock', other))
             return self
@@ -264,11 +263,12 @@ def iadd():
 
 
 def iand():
-    """ &=: Inplace bitwise "and" operator. """
+    """&=: Inplace bitwise "and" operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __iand__(self, other):
             self.value = "filtered by {}".format(bin(other))
             return self
@@ -279,11 +279,12 @@ def iand():
 
 
 def ifloordiv():
-    """ //=: Inplace floor divide operator. """
+    """//=: Inplace floor divide operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __ifloordiv__(self, other):
             self.value = "int(val/{})".format(other)
             return self
@@ -294,11 +295,12 @@ def ifloordiv():
 
 
 def ilshift():
-    """ <<=: Inplace shift left operator. """
+    """<<=: Inplace shift left operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __ilshift__(self, other):
             self.value = "{} digits added".format(other)
             return self
@@ -309,18 +311,19 @@ def ilshift():
 
 
 def imatmul():
-    """ @=: Inplace matrice multiplication operator. """
+    """@=: Inplace matrice multiplication operator."""
 
     # TODO: @ operator, new in python 3.5
     return NotImplemented
 
 
 def imod():
-    """ %=: Inplace modulo operator. """
+    """%=: Inplace modulo operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __imod__(self, other):
             self.value = "less_than({})".format(other)
             return self
@@ -331,11 +334,12 @@ def imod():
 
 
 def imul():
-    """ *=: Inplace multiplication operator. """
+    """*=: Inplace multiplication operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __imul__(self, other):
             self.value = "{} times".format(other)
             return self
@@ -346,11 +350,12 @@ def imul():
 
 
 def ior():
-    """ |=: Inplace bitwise "or" operator. """
+    """|=: Inplace bitwise "or" operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __ior__(self, other):
             self.value = "filled with {}".format(bin(other))
             return self
@@ -361,11 +366,12 @@ def ior():
 
 
 def ipow():
-    """ **=: Inplace power operator. """
+    """**=: Inplace power operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __ipow__(self, other):
             self.value = "exponent_{}".format(other)
             return self
@@ -376,11 +382,12 @@ def ipow():
 
 
 def irshift():
-    """ >>=: Inplace right shift operator. """
+    """>>=: Inplace right shift operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __irshift__(self, other):
             self.value = "erase {} bits".format(other)
             return self
@@ -391,11 +398,12 @@ def irshift():
 
 
 def isub():
-    """ -=: Inplace subtract operator. """
+    """-=: Inplace subtract operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __isub__(self, other):
             self.value = "{} missing".format(other)
             return self
@@ -406,11 +414,12 @@ def isub():
 
 
 def itruediv():
-    """ /=: Inplace divide operator. """
+    """/=: Inplace divide operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __itruediv__(self, other):
             self.value = "can you divide by {}".format(other)
             return self
@@ -421,11 +430,12 @@ def itruediv():
 
 
 def ixor():
-    """ ^=: Inplace exclusive "or" operator. """
+    """^=: Inplace exclusive "or" operator."""
 
     class _Operand:
         def __init__(self):
             self.value = ''
+
         def __ixor__(self, other):
             self.value = "remove bits matching {}".format(bin(other))
             return self
@@ -439,7 +449,7 @@ def ixor():
 
 
 def radd():
-    """ +: Right operand addition operator. """
+    """+: Right operand addition operator."""
 
     class _Operand:
         def __radd__(self, other):
@@ -449,7 +459,7 @@ def radd():
 
 
 def rand():
-    """ &: Right operand bitwise "and" operator. """
+    """&: Right operand bitwise "and" operator."""
 
     class _Operand:
         def __rand__(self, other):
@@ -459,7 +469,7 @@ def rand():
 
 
 def rdivmod():
-    """ rdivmod(obj, other): Right operand divison and modulo operation. """
+    """rdivmod(obj, other): Right operand divison and modulo operation."""
 
     class _Operand:
         def __rdivmod__(self, other):
@@ -469,34 +479,34 @@ def rdivmod():
 
 
 def rfloordiv():
-    """ : Right operand floor divide operator. """
+    """: Right operand floor divide operator."""
 
     class _Operand:
         def __rfloordiv__(self, other):
             return "zero" if other == 0 else "something"
 
-    return  0 // _Operand()
+    return 0 // _Operand()
 
 
 def rlshift():
-    """ : Right operand shift left operator. """
+    """: Right operand shift left operator."""
 
     class _Operand:
         def __rlshift__(self, other):
             return "{} and many 0s".format(other)
 
-    return  1 << _Operand()
+    return 1 << _Operand()
 
 
 def rmatmul():
-    """ @: Right operand matrice multiply operator. """
+    """@: Right operand matrice multiply operator."""
 
     # TODO: @ operator, new in python 3.5
     return NotImplemented
 
 
 def rmod():
-    """ %: Right operand modulo operator. """
+    """%: Right operand modulo operator."""
 
     class _Operand:
         def __rmod__(self, other):
@@ -506,71 +516,70 @@ def rmod():
 
 
 def rmul():
-    """ *: Right operand multiply operator. """
+    """*: Right operand multiply operator."""
 
     class _Operand:
         def __rmul__(self, other):
             return "{} repeated".format(other)
 
-    return  3 * _Operand()
+    return 3 * _Operand()
 
 
 def ror():
-    """ |: Right operand bitwise "or" operator. """
+    """|: Right operand bitwise "or" operator."""
 
     class _Operand:
         def __ror__(self, other):
             return "keep true bits of {}".format(other)
 
-    return  4 | _Operand()
+    return 4 | _Operand()
 
 
 def rpow():
-    """ **: Right operand power operator. """
+    """**: Right operand power operator."""
 
     class _Operand:
         def __rpow__(self, other):
             return "elevated {} to power".format(other)
 
-    return  5**_Operand()
+    return 5**_Operand()
 
 
 def rrshift():
-    """ >>: Right operand shift right operator. """
+    """>>: Right operand shift right operator."""
 
     class _Operand:
         def __rrshift__(self, other):
             return "low bits taken from {}".format(other)
 
-    return  6 >> _Operand()
+    return 6 >> _Operand()
 
 
 def rsub():
-    """ -: Right operand substract operator. """
+    """-: Right operand substract operator."""
 
     class _Operand:
         def __rsub__(self, other):
             return "inferior to {}".format(other)
 
-    return  7 - _Operand()
+    return 7 - _Operand()
 
 
 def rtruediv():
-    """ /: Right operand divide operator. """
+    """/: Right operand divide operator."""
 
     class _Operand:
         def __rtruediv__(self, other):
             return "inverted" if other == 1 else "something"
 
-    return  1 / _Operand()
+    return 1 / _Operand()
 
 
 def rxor():
-    """ ^: Right operand exclusive "or" operator. """
+    """^: Right operand exclusive "or" operator."""
 
     class _Operand:
         def __rxor__(self, other):
             return "select unmatching bits from {}".format(other)
 
-    return  8 ^ _Operand()
-
+    return 8 ^ _Operand()

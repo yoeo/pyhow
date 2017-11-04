@@ -1,4 +1,4 @@
-""" pyhow.samples module
+"""pyhow.samples module
 
 Contains all the sample codes.
 
@@ -22,4 +22,3 @@ import pyhow.samples.lib.re
 import pyhow.samples.lib.tempfile
 import pyhow.samples.syntax.regex
 import pyhow.samples.syntax.str_format
-

@@ -1,4 +1,4 @@
-""" collections library: Tools to manage sequence of items. """
+"""collections library: Tools to manage sequence of items."""
 
 import collections
 
@@ -7,7 +7,7 @@ import collections
 
 
 def chainmap_maps():
-    """ obj.maps(): Linked dictionaries. """
+    """obj.maps(): Linked dictionaries."""
 
     map_one = {1: 0}
     map_two = {99: "Link"}
@@ -16,7 +16,7 @@ def chainmap_maps():
 
 
 def chainmap_hierarchy():
-    """ obj.parents(), obj.new_child(): Lookup hierarchy. """
+    """obj.parents(), obj.new_child(): Lookup hierarchy."""
 
     map_one = {1: 0}
     map_two = {99: "Link"}
@@ -36,7 +36,7 @@ def chainmap_hierarchy():
 
 
 def counter():
-    """ Counter(): Dict-like item to count number of occurences. """
+    """Counter(): Dict-like item to count number of occurences."""
 
     occurences = collections.Counter("Peach")
     missing_to_zero = occurences['z'] == 0
@@ -44,7 +44,7 @@ def counter():
 
 
 def counter_most_common():
-    """ obj.most_common(): Most common items, with nb occurences. """
+    """obj.most_common(): Most common items, with nb occurences."""
 
     occurences = collections.Counter("Luigi")
     item, nb_occurences = occurences.most_common(1)[0]
@@ -52,13 +52,13 @@ def counter_most_common():
 
 
 def counter_elements():
-    """ obj.elements(): Generate all items with the required repetitions. """
+    """obj.elements(): Generate all items with the required repetitions."""
 
     return ''.join(collections.Counter(g=1, o=4).elements()).upper()
 
 
 def counter_subtract():
-    """ obj.subtract(...): Substract counts, c1 -= c2. """
+    """obj.subtract(...): Substract counts, c1 -= c2."""
 
     occurences = collections.Counter("Kart race")
     occurences.subtract(collections.Counter("accidented Kirrrby"))
@@ -66,7 +66,7 @@ def counter_subtract():
 
 
 def counter_update():
-    """ obj.update(...): Add counts, c1 += c2. """
+    """obj.update(...): Add counts, c1 += c2."""
 
     occurences = collections.Counter("shell")
     occurences.update(collections.Counter("lightning"))
@@ -74,7 +74,7 @@ def counter_update():
 
 
 def counter_operations():
-    """ +, -, &, |: Numerical operations with counter elements. """
+    """+, -, &, |: Numerical operations with counter elements."""
 
     occurences_a = collections.Counter('Toad')
     occurences_b = collections.Counter('Roy')
@@ -89,7 +89,7 @@ def counter_operations():
 
 
 def namedtuple():
-    """ cls(...): Create an object class to store tuple value. """
+    """cls(...): Create an object class to store tuple value."""
 
     kart_class = collections.namedtuple('Kart', ('color', 'speed'))
     blue_kart = kart_class(*('blue', 50))
@@ -97,7 +97,7 @@ def namedtuple():
 
 
 def namedtuple_make():
-    """ cls._make(...): Create new instance from a tuple. """
+    """cls._make(...): Create new instance from a tuple."""
 
     kart_class = collections.namedtuple('Kart', 'celerity size')
     rocket_kart = kart_class._make((1000, 'small'))
@@ -105,7 +105,7 @@ def namedtuple_make():
 
 
 def namedtuple_asdict():
-    """ obj._asdict(), dict(obj): Convert the instance to an ordered dict. """
+    """obj._asdict(), dict(obj): Convert the instance to an ordered dict."""
 
     kart_class = collections.namedtuple('Kart', 'breaks, lights')
     kart = kart_class(*('off', 'on'))
@@ -114,7 +114,7 @@ def namedtuple_asdict():
 
 
 def namedtuple_replace():
-    """ cls._replace(...): Copy an instance by changing a member. """
+    """cls._replace(...): Copy an instance by changing a member."""
 
     kart_class = collections.namedtuple('Kart', ['owner', 'color'])
     toad_kart = kart_class(owner='Toad', color='green')
@@ -124,7 +124,7 @@ def namedtuple_replace():
 
 
 def namedtuple_source():
-    """ cls._source: Source code of the named tuple class. """
+    """cls._source: Source code of the named tuple class."""
 
     kart_class = collections.namedtuple('MegaKart', 'is_mega is_realy_mega')
     defined = 'class {}'.format(kart_class.__name__) in kart_class._source
@@ -132,7 +132,7 @@ def namedtuple_source():
 
 
 def namedtuple_fields():
-    """ cls._fields: Attributes of the named tuple. """
+    """cls._fields: Attributes of the named tuple."""
 
     kart_class = collections.namedtuple('Kart', 'size mottor gears speed')
     return "Kart features are {}...".format(', '.join(kart_class._fields))
@@ -142,14 +142,14 @@ def namedtuple_fields():
 
 
 def deque():
-    """ deque(...): List-like double edged queue. """
+    """deque(...): List-like double edged queue."""
 
     power_ups = collections.deque(('star', 'lightning'))
     return "there are {} power ups".format(len(power_ups))
 
 
 def deque_append():
-    """ obj.append(...), obj.appendleft(...): Add element. """
+    """obj.append(...), obj.appendleft(...): Add element."""
 
     power_ups = collections.deque(('star', 'lightning'))
     power_ups.append('green-shell')
@@ -158,7 +158,7 @@ def deque_append():
 
 
 def deque_extend():
-    """ obj.extend(...), obj.extendleft(...): Add list of elements. """
+    """obj.extend(...), obj.extendleft(...): Add list of elements."""
 
     power_ups = collections.deque(('star', 'lightning'))
     power_ups.extend(('green-shell', 'rocket'))
@@ -167,7 +167,7 @@ def deque_extend():
 
 
 def deque_pop():
-    """ obj.pop(...), obj.popleft(...): Pop an element. """
+    """obj.pop(...), obj.popleft(...): Pop an element."""
 
     power_ups = collections.deque(('star', 'lightning', 'rocket'))
     _ = power_ups.popleft()
@@ -176,7 +176,7 @@ def deque_pop():
 
 
 def deque_rotate():
-    """ obj.rotate(...): Move the position of elements. """
+    """obj.rotate(...): Move the position of elements."""
 
     power_ups = collections.deque(('star', 'lightning', 'rocket', 'banana'))
     power_ups.rotate(2)
@@ -187,7 +187,7 @@ def deque_rotate():
 
 
 def ordereddict():
-    """ OrderedDict(...): Sorted dictionary. """
+    """OrderedDict(...): Sorted dictionary."""
 
     pilots = {pilot: len(pilot) for pilot in 'Peach Bowser Toad'.split()}
     ordered_pilots = collections.OrderedDict(sorted(
@@ -197,7 +197,7 @@ def ordereddict():
 
 
 def ordereddict_popitem():
-    """ obj.popitem(...): Pop last or first item, default is last. """
+    """obj.popitem(...): Pop last or first item, default is last."""
 
     pilots = {pilot: len(pilot) for pilot in 'Peach Bowser Toad'.split()}
     ordered_pilots = collections.OrderedDict(pilots)
@@ -206,7 +206,7 @@ def ordereddict_popitem():
 
 
 def ordereddict_move_to_end():
-    """ obj.move_to_end(...): Modify the position of an item. """
+    """obj.move_to_end(...): Modify the position of an item."""
 
     pilots = {pilot: len(pilot) for pilot in 'Peach Bowser Toad'.split()}
     ordered_pilots = collections.OrderedDict(pilots)
@@ -219,7 +219,7 @@ def ordereddict_move_to_end():
 
 
 def defaultdict():
-    """ defaultdict(...): Dictionary with a value for missing keys. """
+    """defaultdict(...): Dictionary with a value for missing keys."""
 
     kart = collections.defaultdict(lambda: 'unknown')
     kart['speed'] = 66
@@ -228,7 +228,7 @@ def defaultdict():
 
 
 def defaultdict_default_factory():
-    """ obj.default_factory: Change default value factory method. """
+    """obj.default_factory: Change default value factory method."""
 
     kart = collections.defaultdict()
     kart.default_factory = lambda: 'too high'
@@ -239,10 +239,10 @@ def defaultdict_default_factory():
 
 
 def userdict():
-    """ Cls(UserDict): Managed dictionary. """
+    """Cls(UserDict): Managed dictionary."""
 
     class Kart(collections.UserDict):
-        """ Custom kart. """
+        """Custom kart."""
         def __getitem__(self, key):
             return '*{}*'.format(self.data[key])
 
@@ -253,10 +253,10 @@ def userdict():
 
 
 def userlist():
-    """ Cls(UserList): Managed lists. """
+    """Cls(UserList): Managed lists."""
 
     class Motors(collections.UserList):
-        """ Custom kart motors list. """
+        """Custom kart motors list."""
         def __str__(self):
             return 'Kart motors {}'.format(', '.join(self.data))
 
@@ -265,12 +265,12 @@ def userlist():
 
 
 def userstring():
-    """ Cls(UserString): Managed string. """
+    """Cls(UserString): Managed string."""
 
     class Pilot(collections.UserString):
-        """ Custom kart pilot name. """
+        """Custom kart pilot name."""
         def swap(self, new_pilot):
-            """ Carjack the kart. """
+            """Carjack the kart."""
             if not isinstance(new_pilot, str):
                 raise TypeError('new_pilot is not a str')
             self.data = new_pilot
@@ -278,4 +278,3 @@ def userstring():
     pilot = Pilot('Toad')
     pilot.swap('Donkey Kong')
     return "pilot of the day is " + pilot
-

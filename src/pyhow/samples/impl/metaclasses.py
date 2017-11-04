@@ -1,4 +1,4 @@
-""" Tweak metaclasses, classes that generates classes. """
+"""Tweak metaclasses, classes that generates classes."""
 
 # using unfinished example classes
 # pylint: disable=missing-docstring
@@ -11,7 +11,7 @@
 
 
 def prepare():
-    """ mcs.__prepare__: Generate the default attributes of a class. """
+    """mcs.__prepare__: Generate the default attributes of a class."""
 
     class Meta(type):
         @staticmethod
@@ -26,7 +26,7 @@ def prepare():
 
 
 def new():
-    """ mcs.__new__: Create a class as an instance. """
+    """mcs.__new__: Create a class as an instance."""
 
     class Meta(type):
         def __new__(mcs, class_name, bases, namespace, **_):
@@ -50,7 +50,7 @@ def new():
 
 
 def init():
-    """ mcs.__init__: Create a class as an instance. """
+    """mcs.__init__: Create a class as an instance."""
 
     class Meta(type):
         def __init__(cls, class_name, bases, namespace):
@@ -69,7 +69,7 @@ def init():
 
 
 def class_method():
-    """ cls.meth(): Class method defined by metaclass. """
+    """cls.meth(): Class method defined by metaclass."""
 
     class Meta(type):
         def get_value(cls):
@@ -82,7 +82,7 @@ def class_method():
 
 
 def operator():
-    """ +, *, -, ...: Operation on classes. """
+    """+, *, -, ...: Operation on classes."""
 
     class Meta(type):
         def __mul__(cls, other):
@@ -108,7 +108,7 @@ def operator():
 
 
 def method():
-    """ class Cls(metaclass=func): Using a callable as a metaclass. """
+    """class Cls(metaclass=func): Using a callable as a metaclass."""
 
     def function(name, bases, namespace, **kw):
         cls = type(name, bases, namespace)
@@ -123,7 +123,7 @@ def method():
 
 
 def decorator():
-    """ @func: Using a class decorator instead. """
+    """@func: Using a class decorator instead."""
 
     def function(cls):
         cls.value = "modified by the decorator"
@@ -134,4 +134,3 @@ def decorator():
         pass
 
     return ItemClass.value
-

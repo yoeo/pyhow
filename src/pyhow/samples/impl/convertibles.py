@@ -1,4 +1,4 @@
-""" Handle items conversion and value extraction. """
+"""Handle items conversion and value extraction."""
 
 # using unfinished example classes
 # pylint: disable=no-self-use
@@ -11,7 +11,7 @@ import math
 
 
 def bool_convert():
-    """ bool: Convert an item to a boolean. """
+    """bool: Convert an item to a boolean."""
 
     class _BooleanLike:
         def __bool__(self):
@@ -21,7 +21,7 @@ def bool_convert():
 
 
 def bytes_convert():
-    """ bytes: Convert an item to bytes string. """
+    """bytes: Convert an item to bytes string."""
 
     class _ByteLike:
         def __bytes__(self):
@@ -31,7 +31,7 @@ def bytes_convert():
 
 
 def complex_convert():
-    """ complex: Convert an item to a complex number. """
+    """complex: Convert an item to a complex number."""
 
     class _ComplexLike:
         def __complex__(self):
@@ -41,7 +41,7 @@ def complex_convert():
 
 
 def float_convert():
-    """ float: Convert an item to a floating point decimal. """
+    """float: Convert an item to a floating point decimal."""
 
     class _FloatLike:
         def __float__(self):
@@ -51,7 +51,7 @@ def float_convert():
 
 
 def int_convert():
-    """ int: Convert an item to an integer. """
+    """int: Convert an item to an integer."""
 
     class _IntLike:
         def __int__(self):
@@ -61,7 +61,7 @@ def int_convert():
 
 
 def str_convert():
-    """ str: Convert an item to a string. """
+    """str: Convert an item to a string."""
 
     class _StringLike:
         def __str__(self):
@@ -74,7 +74,7 @@ def str_convert():
 
 
 def abs_method():
-    """ abs: Absolute value of an item. """
+    """abs: Absolute value of an item."""
 
     class _Absolute:
         def __abs__(self):
@@ -84,7 +84,7 @@ def abs_method():
 
 
 def format_method():
-    """ format: Formated representation of an item. """
+    """format: Formated representation of an item."""
 
     class _Formatable:
         def __format__(self, spec):
@@ -94,7 +94,7 @@ def format_method():
 
 
 def hash_method():
-    """ hash: An integer represetation of a value of an object. """
+    """hash: An integer represetation of a value of an object."""
 
     class _Hashable:
         def __hash__(self):
@@ -104,7 +104,7 @@ def hash_method():
 
 
 def repr_method():
-    """ repr: Basic representation of an item. """
+    """repr: Basic representation of an item."""
 
     class _Representable:
         def __repr__(self):
@@ -114,7 +114,7 @@ def repr_method():
 
 
 def round_method():
-    """ round: Round an item to the closest integer. """
+    """round: Round an item to the closest integer."""
 
     class _Pi:
         def __round__(self, precision=0):
@@ -124,7 +124,7 @@ def round_method():
 
 
 def floor_method():
-    """ math.floor(obj): Round to the nearest lower integer. """
+    """math.floor(obj): Round to the nearest lower integer."""
 
     class _MinusPi:
         def __floor__(self):
@@ -134,7 +134,7 @@ def floor_method():
 
 
 def ceil_method():
-    """ math.ceil(obj): Round to the nearest greater integer. """
+    """math.ceil(obj): Round to the nearest greater integer."""
 
     class _Pi:
         def __ceil__(self):
@@ -144,13 +144,10 @@ def ceil_method():
 
 
 def trunc_method():
-    """ math.trunc(obj): Round to the integer nearest to zero. """
+    """math.trunc(obj): Round to the integer nearest to zero."""
 
     class _MinusPi:
         def __trunc__(self):
             return -3
 
     return math.trunc(_MinusPi())
-
-
-

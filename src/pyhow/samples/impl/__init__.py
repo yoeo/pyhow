@@ -1,6 +1,5 @@
-""" pyhow.samples.impl module
+"""pyhow.samples.impl module
 
 Python data model implementation.
 
 """
-

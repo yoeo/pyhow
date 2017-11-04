@@ -1,4 +1,4 @@
-""" Run pyhow. """
+"""Run pyhow."""
 
 import argparse
 
@@ -9,7 +9,7 @@ DESCRIPTION_PREFIX = "Select one of the following samples:"
 
 
 def run():
-    """ Parse command line and show the required sample. """
+    """Parse command line and show the required sample."""
 
     samples = make_samples()
     space = max(len(name) for name in samples)

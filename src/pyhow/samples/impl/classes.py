@@ -1,4 +1,4 @@
-""" Play with class and object implementations. """
+"""Play with class and object implementations."""
 
 # using unfinished example classes
 # pylint: disable=assigning-non-slot
@@ -16,15 +16,17 @@ import weakref
 
 
 def delattr_method():
-    """ del, delattr: Remove an attribute. """
+    """del, delattr: Remove an attribute."""
 
     class _ItemClass:
         def __init__(self):
             self._deleted = set()
+
         def __getattr__(self, attribute):
             if attribute in self._deleted:
                 raise AttributeError()
             return 321
+
         def __delattr__(self, attribute):
             self._deleted.add(attribute)
 
@@ -37,11 +39,12 @@ def delattr_method():
 
 
 def dir_method():
-    """ dir: List of accessible attributes and methods. """
+    """dir: List of accessible attributes and methods."""
 
     class _ItemClass:
         def __dir__(self):
             return ['ghost_attribute'] + list(self.__dict__.keys())
+
         def __getattr__(self, attribute):
             if attribute != 'ghost_attribute':
                 raise AttributeError()
@@ -52,11 +55,12 @@ def dir_method():
 
 
 def getattr_method():
-    """ obj.attr, getattr: Produce a value for missing attributes. """
+    """obj.attr, getattr: Produce a value for missing attributes."""
 
     class _ItemClass:
         def __init__(self):
             self.value_found = True
+
         def __getattr__(self, attribute):
             return "sweet stream"
 
@@ -65,11 +69,12 @@ def getattr_method():
 
 
 def getattribute_method():
-    """ obj.attr, getattr: Produce a value for all attributes. """
+    """obj.attr, getattr: Produce a value for all attributes."""
 
     class _ItemClass:
         def __init__(self):
             self.value_found = True
+
         def __getattribute__(self, attribute):
             return Ellipsis
 
@@ -78,12 +83,14 @@ def getattribute_method():
 
 
 def setattr_method():
-    """ obj.attr=, setattr: Change value of all attributes. """
+    """obj.attr=, setattr: Change value of all attributes."""
 
     class _ItemClass:
         value = ...
+
         def __init__(self):
             self.value = "spit some more rap"
+
         def __setattr__(self, attribute, value):
             _ItemClass.value = value
 
@@ -94,7 +101,7 @@ def setattr_method():
 
 
 def instancecheck_method():
-    """ isinstance: Check if item is an instance of a class. """
+    """isinstance: Check if item is an instance of a class."""
 
     class _MetaBase(type):
         def __instancecheck__(cls, item):
@@ -108,7 +115,7 @@ def instancecheck_method():
 
 
 def prepare():
-    """ Cls(): Create the attributes dict needed to produce a new instance. """
+    """Cls(): Create the attributes dict needed to produce a new instance."""
 
     class _MetaBase(type):
         @staticmethod
@@ -122,7 +129,7 @@ def prepare():
 
 
 def subclasscheck_method():
-    """ issubclass: Check if a class is a subclass of an other one. """
+    """issubclass: Check if a class is a subclass of an other one."""
 
     class _MetaBase(type):
         def __subclasscheck__(cls, subclass):
@@ -136,7 +143,7 @@ def subclasscheck_method():
 
 
 def subclasshook():
-    """ isinstance, issubclass: inheritance check for Abstract Base Classes. """
+    """isinstance, issubclass: inheritance check for Abstract Base Classes."""
 
     class _AbstractBase(metaclass=abc.ABCMeta):
         @classmethod
@@ -164,14 +171,16 @@ def subclasshook():
 
 
 def delete_method():
-    """ del obj.attr: Delete an attribute handled by another class. """
+    """del obj.attr: Delete an attribute handled by another class."""
 
     class _Descriptor:
         def __init__(self):
             self.active = True
+
         def __delete__(self, item):
             item.shadow_value = "attribute deleted"
             self.active = False
+
         def __get__(self, *_):
             if not self.active:
                 raise AttributeError('attribute not found')
@@ -189,7 +198,7 @@ def delete_method():
 
 
 def get_method():
-    """ obj.attr: Link an attribute to a class that computes its value. """
+    """obj.attr: Link an attribute to a class that computes its value."""
 
     class _Descriptor:
         def __get__(self, item, item_class):
@@ -202,7 +211,7 @@ def get_method():
 
 
 def set_method():
-    """ obj.attr=: Link an attribute to a class changes its value. """
+    """obj.attr=: Link an attribute to a class changes its value."""
 
     class _Descriptor:
         def __set__(self, item, value):
@@ -220,25 +229,25 @@ def set_method():
 
 
 def bases_attribute():
-    """ Cls.__bases__: Base classes of the current class. """
+    """Cls.__bases__: Base classes of the current class."""
 
     class _SubClass(str):
-        """ str sub-class. """
+        """str sub-class."""
 
     return "{}ing instruments".format(_SubClass.__bases__[0].__name__)
 
 
 def class_attribute():
-    """ obj.__class__, type: Class of a given instance. """
+    """obj.__class__, type: Class of a given instance."""
 
     class _BeatBox:
-        """ BeatBox class. """
+        """BeatBox class."""
 
     return _BeatBox().__class__.__name__
 
 
 def del_method():
-    """ del: Cleanup an item on destroy. """
+    """del: Cleanup an item on destroy."""
 
     # use __del__ with caution
     # it is difficult to know when the object will be actually removed
@@ -256,11 +265,11 @@ def del_method():
 
 
 def dict_attribute():
-    """ Cls.__dict__: Bindings for class members. """
+    """Cls.__dict__: Bindings for class members."""
 
     class _ItemClass:
         def get_message(self):
-            """ Give a positive message. """
+            """Give a positive message."""
             return "podcasts are good for self({})".format(id(self))
 
     item = _ItemClass()
@@ -268,7 +277,7 @@ def dict_attribute():
 
 
 def init_method():
-    """ Cls(): Initialize a new object. """
+    """Cls(): Initialize a new object."""
 
     class _ItemClass:
         def __init__(self, value):
@@ -278,7 +287,7 @@ def init_method():
 
 
 def mro_attribute():
-    """ Cls.__mro__, super(): List of base types used to process class tree. """
+    """Cls.__mro__, super(): List of base types used to process class tree."""
 
     class _ItemClass(type(...), int):
         pass
@@ -288,7 +297,7 @@ def mro_attribute():
 
 
 def new_method():
-    """ Cls(): Create an object. """
+    """Cls(): Create an object."""
 
     class _ItemClass:
         def __new__(cls):
@@ -300,7 +309,7 @@ def new_method():
 
 
 def slots_attribute():
-    """ obj.__slots__: Freaze the available attributes list. """
+    """obj.__slots__: Freaze the available attributes list."""
 
     class _ItemClass:
         __slots__ = ('value_found',)
@@ -314,7 +323,7 @@ def slots_attribute():
 
 
 def weakref_attribute():
-    """ obj.__weakref__, weakref.ref(obj): Weak references to an item. """
+    """obj.__weakref__, weakref.ref(obj): Weak references to an item."""
 
     class _ItemClass:
         pass
@@ -328,14 +337,14 @@ def weakref_attribute():
 
 
 def enter_exit():
-    """ with: Use and release a resource."""
+    """with: Use and release a resource."""
 
     class _Resource:
         def __enter__(self):
             return "enter concert"
+
         def __exit__(self, error_class, error, traceback):
             pass
 
     with _Resource() as resource:
         return resource
-

@@ -1,4 +1,4 @@
-""" Trigger and handle built-in warnings. """
+"""Trigger and handle built-in warnings."""
 
 # using depreticated function
 # pylint: disable=deprecated-method
@@ -11,7 +11,7 @@ import warnings
 
 
 def byte_warning():
-    """ Wrong Byte operation. """
+    """Wrong Byte operation."""
 
     warnings.simplefilter('error', BytesWarning)
     try:
@@ -24,7 +24,7 @@ def byte_warning():
 
 
 def import_warning():
-    """ Issues during import. """
+    """Issues during import."""
 
     warnings.simplefilter('error', ImportWarning)
     try:
@@ -34,7 +34,7 @@ def import_warning():
 
 
 def ressource_warning():
-    """ Bad resource usage. """
+    """Bad resource usage."""
 
     warnings.simplefilter('error', ResourceWarning)
     try:
@@ -46,7 +46,7 @@ def ressource_warning():
 
 
 def runtime_warning():
-    """ Abnormal behaviour during runtime"""
+    """Abnormal behaviour during runtime."""
 
     warnings.simplefilter('error', RuntimeWarning)
     try:
@@ -58,7 +58,7 @@ def runtime_warning():
 
 
 def unicode_warning():
-    """ Unicode convertion issue. """
+    """Unicode convertion issue."""
 
     warnings.simplefilter('error', UnicodeWarning)
     try:
@@ -70,7 +70,7 @@ def unicode_warning():
 
 
 def warning():
-    """ Base of all warnings. """
+    """Base of all warnings."""
 
     warnings.simplefilter('error', Warning)
     try:
@@ -85,7 +85,7 @@ def warning():
 
 
 def deprecatioin_warning():
-    """ Using depreticated features. """
+    """Using depreticated features."""
 
     warnings.simplefilter('error', DeprecationWarning)
     try:
@@ -97,7 +97,7 @@ def deprecatioin_warning():
 
 
 def future_warning():
-    """ Using element / syntax that will soon change. """
+    """Using element / syntax that will soon change."""
 
     warnings.simplefilter('error', FutureWarning)
     try:
@@ -109,7 +109,7 @@ def future_warning():
 
 
 def pending_depretication_warning():
-    """ Using features that will soon be depreticated. """
+    """Using features that will soon be depreticated."""
 
     warnings.simplefilter('error', PendingDeprecationWarning)
     try:
@@ -121,7 +121,7 @@ def pending_depretication_warning():
 
 
 def syntax_warning():
-    """ Strange syntax. """
+    """Strange syntax."""
 
     warnings.simplefilter('error', SyntaxWarning)
     try:
@@ -130,4 +130,3 @@ def syntax_warning():
         return "check the syntax"
     finally:
         warnings.simplefilter('ignore', SyntaxWarning)
-
