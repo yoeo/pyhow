@@ -5,13 +5,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="pyhow",
-    author="yoeo",
+    author="Y. SOMDA",
     version="1.0",
     url="https://github.com/yoeo",
     license="MIT",
     description="Master all the bases of python!",
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
-    test_suite="tests",
-    scripts=['bin/pyhow'],
+    packages=find_packages(),
+    entry_points={
+        'console_scripts': ['pyhow = pyhow.__main__:main']
+    },
 )

@@ -8,7 +8,7 @@ from pyhow import make_samples, show_sample
 DESCRIPTION_PREFIX = "Select one of the following samples:"
 
 
-def run():
+def main():
     """Parse command line and show the required sample."""
 
     samples = make_samples()
@@ -29,4 +29,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    main()
