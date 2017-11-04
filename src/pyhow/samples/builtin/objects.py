@@ -34,10 +34,8 @@ def none():
     """ None: Null value. """
 
 
-
 def not_implemented():
     """ NotImplemented: Used for partial comparison implementation. """
-
 
     class HugeValue:
         """ Huge integer. """
@@ -136,7 +134,7 @@ def memoryview_builtin():
         for i in range(0, len(access), 4):
             access_chunk = access[i:i+4]  # no copy
             energy_flavour = sum(access_chunk.tolist())
-            energy.append(choices[energy_flavour%2])
+            energy.append(choices[energy_flavour % 2])
 
     return "your energy is like {}".format('+'.join(energy))
 
@@ -173,7 +171,7 @@ def all_builtin():
 def any_builtin():
     """ any: Check if at least one element is true. """
 
-    return any((None, False, 0, [], {}, tuple(), ...)) and "which one is true ?"
+    return any((None, False, 0, [], {}, tuple(), ...)) and "which one is true?"
 
 
 def enumerate_builtin():
@@ -184,7 +182,7 @@ def enumerate_builtin():
 
 
 def filter_builtin():
-    """ filter: Filter items with a key function. Prefer list comprehension. """
+    """ filter: Filter items using a function. Prefer list comprehension. """
 
     return "{}ged top secret".format(
         ''.join(filter(lambda info: info not in 'open', "pentagone")))
@@ -248,7 +246,7 @@ def slice_builtin():
 def sorted_builtin():
     """ sorted: Sort a sequence. """
 
-    return ''.join(sorted('noW', key=lambda value: value.lower(), reverse=True))
+    return ''.join(sorted('noW', key=lambda char: char.lower(), reverse=True))
 
 
 def sum_builtin():
@@ -287,7 +285,6 @@ def bin_builtin():
 
 def callable_builtin():
     """ callable: Check if an object is callable. """
-
 
     def messenger():
         """ Send a message. """
@@ -374,7 +371,6 @@ def round_builtin():
 def classmethod_builtin():
     """ @classmethod: Decorator to define class methods. """
 
-
     class Words:
         """ Handle words. """
         separator = '★'
@@ -432,7 +428,8 @@ def issubclass_builtin():
     """ issubclass: Check if a class is a subclass of an other one. """
 
     return (
-        issubclass(type(all), object) and "*all your base are belong to object")
+        issubclass(type(all), object)
+        and "*all your base are belong to object")
 
 
 def locals_builtin():
@@ -537,7 +534,8 @@ def vars_builtin():
     """ vars: Local variables or object attributes if obj.__dict__ exists. """
 
     return "{} wolf".format(
-        locals() == vars() and [name for name in vars(str) if 'alp' in name][0])
+        locals() == vars()
+        and [name for name in vars(str) if 'alp' in name][0])
 
 
 # category: dynamic code generation
@@ -564,7 +562,7 @@ def exec_builtin():
     return new_global
 
 
-# category: interpreter features
+# category: interpreter features
 
 
 def build_class():
@@ -636,7 +634,7 @@ def input_builtin():
 def loader():
     """ __loader__: Packages loader. """
 
-    return "I'm a {}".format(__loader__.__doc__.splitlines()[0].strip().lower())
+    return "I'm a {}".format(__loader__.__doc__.splitlines()[0].lower())
 
 
 def name():
@@ -679,4 +677,3 @@ def spec():
     """ __spec__: Information used to load the module. """
 
     return os.path.basename(__spec__.origin)
-

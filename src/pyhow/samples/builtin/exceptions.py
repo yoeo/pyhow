@@ -526,4 +526,3 @@ def permission_error():
     finally:
         os.chmod(filename, 0o777)
         os.remove(filename)
-
