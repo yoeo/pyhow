@@ -167,9 +167,9 @@ def character_set():
         [^xyz]      # match any except: x, must start with ^
         [\d]        # match shortcut
         [+)(*]      # no escape needed for special characters: +, ), (, *...
-        [a-z]       # match range: a, b, ..., y, z 
+        [a-z]       # match range: a, b, ..., y, z
         [\-\]\\]    # escape needed for characters: -, ], \
-    ''', flags=re.MULTILINE|re.VERBOSE)
+    ''', flags=re.MULTILINE | re.VERBOSE)
     return "key of success = {}".format(regex.search("mc2+e-").group())
 
 
@@ -233,7 +233,7 @@ def referenced_index():
 def referenced_name():
     """ (?P=name): References a named group. """
 
-    return re.search(r'(?P<noise>\w+)-(?P=noise)', "knock-knock").group('noise')
+    return re.search(r'(?P<noise>\w+)-(?P=noise)', "bam-bam").group('noise')
 
 
 def matches_if_followed_by():
@@ -267,4 +267,3 @@ def matches_if_reference_matches():
 
     regex = re.compile(r'(?P<at>@)?\w+(?(at)@|er)')
     return regex.match("@dream@") and regex.match("dreamer").group()
-
